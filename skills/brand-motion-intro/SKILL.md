@@ -7,6 +7,8 @@ description: Plans and produces a short personal-brand motion video (10–20 s i
 
 A strategic workflow for a 10–20 s motion video that introduces a person or brand: kinetic type, one hero object that carries the story, the brand's own palette and easing, and cuts locked to the music. The scene is an HTML page rendered frame by frame (headless Chrome → ffmpeg), so every detail is editable by text and re-renders in minutes.
 
+Install and usage for people: [`README.md`](README.md) · [`README.pt.md`](README.pt.md).
+
 Built from a real project: [`examples/iy-intro/scene.html`](examples/iy-intro/scene.html) — "Hi, I'm IY., Isabela Yukari, Design Engineer", 20 s, 60 fps, synced to a 120 BPM track.
 
 ## When to use

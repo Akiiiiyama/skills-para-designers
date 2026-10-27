@@ -26,9 +26,13 @@ skills/
 
 Start from [`templates/SKILL.template.md`](templates/SKILL.template.md).
 
-## Install (coming soon)
+## Install
 
-The skills will be packaged as a Claude Code plugin. Installation steps will be added with the first release.
+Copy a skill folder into `~/.claude/skills/` (all projects) or `<project>/.claude/skills/` (one project) and restart Claude Code. Skills with scripts have their own setup steps:
+
+- `brand-motion-intro`: [how to install and use](skills/brand-motion-intro/README.md) · [como instalar e usar](skills/brand-motion-intro/README.pt.md)
+
+The skills will also be packaged as a Claude Code plugin with the first release.
 
 ## License
 
