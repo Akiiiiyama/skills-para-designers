@@ -1,0 +1,404 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* paleta do portfólio (Portfolio-IsabelaY/css/site.css) */
+  :root{--bg:#FFFFFF;--ink:#141414;--accent:#C8102E;--deep:#8C0A20;--mute:#8A8A8A;--line:rgba(20,20,20,0.08);--border:rgba(20,20,20,0.14)}
+  html,body{margin:0;width:1920px;height:1080px;overflow:hidden;background:var(--bg)}
+  body{font-family:'DM Sans',system-ui,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+  .abs{position:absolute}
+  .layer{position:absolute;inset:0}
+  .mono{font-family:ui-monospace,Menlo,monospace;font-size:13px;letter-spacing:0.04em;color:var(--mute);white-space:pre}
+  .label{font-size:15px;letter-spacing:0.14em;color:var(--mute);text-transform:uppercase;white-space:nowrap}
+  .jp{position:absolute;writing-mode:vertical-rl;font-family:'Noto Sans JP',sans-serif;font-size:20px;font-weight:500;letter-spacing:0.32em;color:var(--mute);white-space:nowrap}
+  .glow{position:absolute;border-radius:50%;filter:blur(120px)}
+  .gl{position:absolute;background:var(--line)}
+  .tick{position:absolute;width:14px;height:14px}
+  .tick::before,.tick::after{content:"";position:absolute;background:rgba(20,20,20,0.3)}
+  .tick::before{left:6px;top:0;width:1px;height:14px}
+  .tick::after{top:6px;left:0;height:1px;width:14px}
+  .mask{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:0.06em}
+  .mask > span{display:inline-block}
+  .big{font-weight:700;text-transform:uppercase;letter-spacing:-0.03em;line-height:0.92;white-space:nowrap}
+  .glass{background:rgba(255,255,255,0.86);border:1px solid var(--border)}  /* sem backdrop-filter: o Chrome headless às vezes não o desenha e o quadro pisca */
+  .pill{position:absolute;padding:18px 34px;font-size:26px;font-weight:500;letter-spacing:-0.01em;white-space:nowrap;box-shadow:0 18px 50px rgba(20,20,20,0.08)}
+  .cota{position:absolute;height:12px;border:1px solid var(--accent);border-bottom:none}
+</style>
+</head>
+<body>
+  <!-- fundo: brilhos rosados bem suaves -->
+  <div class="layer" id="glows">
+    <div class="glow" id="g1" style="width:820px;height:820px;background:rgba(200,16,46,0.05)"></div>
+    <div class="glow" id="g2" style="width:640px;height:640px;background:rgba(255,190,202,0.16)"></div>
+    <div class="glow" id="g3" style="width:520px;height:520px;background:rgba(200,16,46,0.03)"></div>
+  </div>
+
+  <!-- linhas-guia e anotações -->
+  <div class="layer" id="guides">
+    <div class="gl" id="h1" style="left:0;top:540px;width:1920px;height:1px"></div>
+    <div class="gl" id="h2" style="left:0;top:150px;width:1920px;height:1px"></div>
+    <div class="gl" id="h3" style="left:0;top:930px;width:1920px;height:1px"></div>
+    <div class="gl" id="v1" style="left:960px;top:0;width:1px;height:1080px"></div>
+    <div class="gl" id="v2" style="left:180px;top:0;width:1px;height:1080px"></div>
+    <div class="gl" id="v3" style="left:1740px;top:0;width:1px;height:1080px"></div>
+    <div class="tick" style="left:953px;top:533px"></div>
+    <div class="tick" style="left:173px;top:143px"></div>
+    <div class="tick" style="left:1733px;top:923px"></div>
+    <div class="mono abs" id="m1" style="left:976px;top:552px"></div>
+    <div class="mono abs" id="m2" style="left:196px;top:118px"></div>
+    <div class="mono abs" id="m3" style="left:196px;top:944px"></div>
+    <div class="mono abs" id="m4" style="right:196px;top:944px;text-align:right"></div>
+    <div class="mono abs" id="m5" style="right:196px;top:118px;text-align:right;color:var(--accent)"></div>
+  </div>
+
+  <!-- katakana na vertical, um por frase -->
+  <div class="jp" id="j1" style="left:1770px;top:200px"></div>
+  <div class="jp" id="j2" style="left:118px;top:340px"></div>
+  <div class="jp" id="j3" style="left:118px;top:340px"></div>
+
+  <!-- cartão final: o ponto do IY. é a própria esfera, que encolhe e pousa aqui -->
+  <div class="layer" id="home">
+    <div id="homeimg" class="layer" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px">
+      <div id="eIY" style="font-size:260px;font-weight:600;letter-spacing:-0.02em;line-height:1;color:#1F1F1F;white-space:pre"><span class="mask"><span id="eI">I</span></span><span class="mask"><span id="eY">Y</span></span><span id="eDot" style="visibility:hidden">.</span></div>
+      <div class="label" id="eLab" style="color:var(--ink);font-size:17px;letter-spacing:0.22em">Isabela Yukari <span style="color:var(--accent)">·</span> Design Engineer</div>
+    </div>
+  </div>
+
+  <!-- cena 1: Hi, I'm IY. -->
+  <div class="layer" id="s1">
+    <div class="abs" id="hi" style="font-size:76px;font-weight:500;letter-spacing:-0.02em;white-space:nowrap">
+      <span class="mask"><span id="hiw1">Hi,</span></span>&nbsp;<span class="mask"><span id="hiw2">I'm</span></span>
+    </div>
+    <div class="abs" id="iy" style="font-size:300px;font-weight:600;letter-spacing:-0.02em;line-height:1;white-space:pre;color:#1F1F1F"><span id="gI" style="display:inline-block">I</span><span id="gY" style="display:inline-block">Y</span><span id="gDot" style="display:inline-block;visibility:hidden">.</span></div>
+    <div class="cota" id="c1"></div>
+    <div class="mono abs" id="c1l" style="color:var(--accent)"></div>
+  </div>
+
+  <!-- cena 2: Isabela Yukari -->
+  <div class="layer" id="s2">
+    <div class="label abs" id="k2" style="left:182px;top:330px"></div>
+    <div class="big abs" style="left:170px;top:378px;font-size:210px">
+      <div><span class="mask"><span id="w21">Isabela</span></span></div>
+      <div><span class="mask"><span id="w22">Yukari<span style="color:var(--accent)">.</span></span></span></div>
+    </div>
+  </div>
+
+  <!-- cena 3: Design Engineer -->
+  <div class="layer" id="s3">
+    <div class="label abs" id="k3" style="left:182px;top:330px"></div>
+    <div class="big abs" style="left:170px;top:378px;font-size:210px">
+      <div><span class="mask"><span id="w31" style="color:var(--accent)">Design</span></span></div>
+      <div><span class="mask"><span id="w32">Engineer</span></span></div>
+    </div>
+    <div class="cota" id="c3"></div>
+    <div class="mono abs" id="c3l" style="color:var(--accent)"></div>
+  </div>
+
+  <!-- ensō: traço vermelho em volta da esfera -->
+  <svg class="layer" width="1920" height="1080" style="overflow:visible">
+    <circle id="enso" r="10" fill="none" stroke="#C8102E" stroke-width="2.5" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1"></circle>
+  </svg>
+
+  <!-- esfera de vidro (nasce do ponto vermelho; vira a íris do olho) -->
+  <div class="abs" id="sphere" style="border-radius:50%;overflow:hidden;box-shadow:inset -30px -40px 80px rgba(140,10,32,0.35),inset 14px 18px 40px rgba(255,255,255,0.45),0 40px 90px rgba(200,16,46,0.25)">
+    <div class="layer" id="sGlass" style="border-radius:50%;background:radial-gradient(circle at 32% 28%,rgba(255,255,255,0.7),rgba(236,110,128,0.42) 30%,rgba(200,16,46,0.6) 62%,rgba(140,10,32,0.78) 100%)"></div>
+    <div class="layer" id="sSolid" style="border-radius:50%;background:var(--accent)"></div>
+  </div>
+  <div class="abs" id="rim" style="border-radius:50%;border:1px solid rgba(20,20,20,0.16);box-shadow:0 0 0 6px rgba(255,255,255,0.55),0 30px 110px rgba(200,16,46,0.28)"></div>
+
+  <!-- o olho (meio do vídeo): traço fino, canto externo levemente erguido -->
+  <svg class="layer" id="eye" width="1920" height="1080" style="overflow:visible">
+    <defs>
+      <radialGradient id="irisG" cx="32%" cy="28%" r="80%">
+        <stop offset="0" stop-color="#6A2A33"/>
+        <stop offset="0.45" stop-color="#2A1518"/>
+        <stop offset="1" stop-color="#141414"/>
+      </radialGradient>
+      <clipPath id="eyeClip"><path id="clipShape" d="M -440 20 C -260 -170 180 -210 440 -50 C 250 150 -220 150 -440 20 Z"/></clipPath>
+    </defs>
+    <g id="eyeG" transform="translate(960 540)">
+      <path id="sclera" d="M -440 20 C -260 -170 180 -210 440 -50 C 250 150 -220 150 -440 20 Z" fill="rgba(255,255,255,0.75)"/>
+      <g clip-path="url(#eyeClip)">
+        <g id="iris">
+          <circle r="150" fill="url(#irisG)"/>
+          <g id="fibers" stroke="rgba(200,16,46,0.45)" stroke-width="1.3"></g>
+          <circle r="146" fill="none" stroke="#C8102E" stroke-width="5"/>
+          <circle id="pupil" r="56" fill="#000000"/>
+          <circle cx="-48" cy="-52" r="22" fill="#FFFFFF" opacity="0.92"/>
+          <circle cx="40" cy="38" r="7" fill="#FFFFFF" opacity="0.7"/>
+        </g>
+      </g>
+      <path id="upper" d="M -440 20 C -260 -170 180 -210 440 -50" fill="none" stroke="#141414" stroke-width="3" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1" vector-effect="non-scaling-stroke"/>
+      <path id="lower" d="M -440 20 C -220 150 250 150 440 -50" fill="none" stroke="#141414" stroke-width="1.6" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1" vector-effect="non-scaling-stroke"/>
+      <path id="crease" d="M -260 -150 C -60 -235 230 -225 420 -120" fill="none" stroke="#141414" stroke-opacity="0.35" stroke-width="1.4" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1"/>
+      <path id="wing" d="M 440 -50 L 520 -92" fill="none" stroke="#141414" stroke-width="3" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1"/>
+    </g>
+  </svg>
+
+  <!-- vidro: retângulos como os botões do portfólio -->
+  <div class="pill glass" id="p1">Strategy</div>
+  <div class="pill glass" id="p2" style="color:var(--accent)">Design</div>
+  <div class="pill glass" id="p3">Engineering</div>
+
+  <div class="jp" id="j4" style="left:1800px;top:180px;color:var(--accent)"></div>
+
+  <!-- carimbo (hanko) final -->
+  <div class="abs" id="hanko" style="display:none;right:120px;bottom:110px;width:112px;height:112px;border-radius:14px;background:var(--accent);display:flex;align-items:center;justify-content:center;box-shadow:inset 0 0 0 7px var(--accent),inset 0 0 0 9px rgba(255,255,255,0.85)">
+    <span style="color:#FFFFFF;font-weight:700;font-size:46px;letter-spacing:-0.02em">IY</span>
+  </div>
+
+<script>
+// curvas do portfólio: OUT = cubic-bezier(.16,1,.3,1), IN-OUT = cubic-bezier(.7,0,.2,1)
+function bez(x1, y1, x2, y2) {
+  return (x) => {
+    if (x <= 0) return 0; if (x >= 1) return 1;
+    let t = x;
+    for (let i = 0; i < 12; i++) {
+      const cx = 3 * x1 * t * (1 - t) ** 2 + 3 * x2 * t * t * (1 - t) + t ** 3 - x;
+      const d = 3 * x1 * (1 - t) ** 2 + 6 * (x2 - x1) * t * (1 - t) + 3 * (1 - x2) * t * t;
+      if (Math.abs(cx) < 1e-6 || d === 0) break;
+      t -= cx / d; t = Math.min(1, Math.max(0, t));
+    }
+    return 3 * y1 * t * (1 - t) ** 2 + 3 * y2 * t * t * (1 - t) + t ** 3;
+  };
+}
+const OUT = bez(.16, 1, .3, 1), INOUT = bez(.7, 0, .2, 1);
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const prog = (t, a, b) => clamp((t - a) / (b - a));
+const lerp = (a, b, p) => a + (b - a) * p;
+const $ = (id) => document.getElementById(id);
+const type = (s, p) => s.slice(0, Math.round(s.length * clamp(p)));
+const draw = (el, p) => { el.style.strokeDashoffset = 1 - p; };
+
+// queda com dois quiques curtos (o Y e o ponto da abertura do site)
+function drop(u) {
+  u = clamp(u);
+  if (u < 0.6) return (u / 0.6) ** 2;
+  if (u < 0.85) { const s = (u - 0.6) / 0.25; return 1 - 0.1 * 4 * s * (1 - s); }
+  const s = (u - 0.85) / 0.15; return 1 - 0.025 * 4 * s * (1 - s);
+}
+
+let L = {};
+function layout() {
+  const iy = $('iy'), hi = $('hi');
+  const w = iy.getBoundingClientRect().width, h = iy.getBoundingClientRect().height;
+  const left = 960 - w / 2, top = 540 - h / 2 + 40;
+  iy.style.left = left + 'px'; iy.style.top = top + 'px';
+  hi.style.left = (left + 14) + 'px'; hi.style.top = (top - 60) + 'px';
+  const d = $('gDot').getBoundingClientRect();
+  L.dot = { x: d.left + d.width / 2 - 4, y: d.top + h * 0.78, d: d.width * 0.62 };
+  const gI = $('gI').getBoundingClientRect();
+  L.iy = { left: gI.left, right: d.right, bottom: top + h * 0.86 };
+  L.w31 = $('w31').getBoundingClientRect();
+  const ed = $('eDot').getBoundingClientRect(), eh = $('eIY').getBoundingClientRect().height;
+  L.end = { x: ed.left + ed.width / 2 - 3.5, y: ed.top + eh * 0.884, d: ed.width * 0.62 };
+  // fibras da íris
+  const f = $('fibers');
+  for (let i = 0; i < 36; i++) {
+    const a = (i / 36) * Math.PI * 2, r0 = 66, r1 = 140 - (i % 3) * 10;
+    const ln = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    ln.setAttribute('x1', Math.cos(a) * r0); ln.setAttribute('y1', Math.sin(a) * r0);
+    ln.setAttribute('x2', Math.cos(a) * r1); ln.setAttribute('y2', Math.sin(a) * r1);
+    f.appendChild(ln);
+  }
+}
+
+const S = { x: 1340, y: 560, d: 600 };   // esfera nas frases 2 e 3
+const IRIS = { x: 960, y: 535, d: 300 }; // íris do olho
+
+// marcos (s): T1 = ponto vira esfera · olho 5.1–7.6 · piscada = vírgula 2 · T3 = portfólio abre
+const T = { blink: 7.12, irisOpen: 9.75, expand: 10.9 };
+
+function render(t) {
+  // ---- fundo
+  const gIn = OUT(prog(t, 0.2, 1.8));
+  const g = [[1520, 260, 0.9], [300, 880, 1.3], [900, 720, 0.7]];
+  g.forEach(([x, y, sp], i) => {
+    const el = $('g' + (i + 1));
+    const r = parseFloat(el.style.width) / 2;
+    el.style.left = (x - r + Math.sin(t * 0.6 * sp + i) * 60) + 'px';
+    el.style.top = (y - r + Math.cos(t * 0.5 * sp + i * 2) * 40) + 'px';
+    el.style.opacity = gIn * (1 - prog(t, 10.6, 11.6));
+  });
+
+  // ---- linhas-guia desenhando a partir do centro
+  const lines = [['h1', 0.0, 'x'], ['v1', 0.12, 'y'], ['v2', 0.3, 'y'], ['h2', 0.38, 'x'], ['v3', 0.46, 'y'], ['h3', 0.54, 'x']];
+  const guideFade = lerp(1, 0.6, prog(t, 1.6, 2.6)) * (1 - prog(t, 10.3, 11.2));
+  lines.forEach(([id, d, ax]) => {
+    const p = OUT(prog(t, d, d + 1.0));
+    $(id).style.transform = (ax === 'x' ? 'scaleX(' : 'scaleY(') + p + ')';
+    $(id).style.opacity = guideFade;
+  });
+  document.querySelectorAll('.tick').forEach((el, i) => {
+    el.style.opacity = OUT(prog(t, 0.5 + i * 0.1, 0.9 + i * 0.1)) * guideFade;
+  });
+  $('m1').textContent = type('x 960 · y 540', prog(t, 0.45, 0.95));
+  $('m2').textContent = type('1920 × 1080 · 60 fps', prog(t, 0.6, 1.1));
+  $('m3').textContent = type('DM Sans · 700 · −0.03em', prog(t, 0.75, 1.25));
+  $('m4').textContent = type('#FFFFFF · #141414 · #C8102E', prog(t, 0.9, 1.4));
+  $('m5').textContent = type('cubic-bezier(.16, 1, .3, 1)', prog(t, 1.0, 1.5));
+  ['m1', 'm2', 'm3', 'm4', 'm5'].forEach((id) => { $(id).style.opacity = guideFade; });
+
+  // ---- katakana vertical
+  const jp = [['j1', 'こんにちは', 1.0, 1.7, 3.2, 3.6], ['j2', 'イザベラ・ユカリ', 4.1, 4.9, 5.05, 5.45],
+              ['j3', 'デザインエンジニア', 8.05, 8.8, 9.15, 9.6], ['j4', 'ようこそ', 11.0, 11.6, 99, 100]];
+  jp.forEach(([id, s, a, b, c, d]) => {
+    $(id).textContent = type(s, prog(t, a, b));
+    $(id).style.opacity = 1 - prog(t, c, d);
+  });
+
+  // ---- cena 1: Hi, I'm IY.
+  const out1 = INOUT(prog(t, 3.2, 3.75));
+  $('s1').style.opacity = 1 - out1;
+  $('s1').style.transform = 'translateY(' + (-70 * out1) + 'px)';
+  $('s1').style.filter = 'blur(' + (14 * out1) + 'px)';
+  $('hiw1').style.transform = 'translateY(' + (110 * (1 - OUT(prog(t, 1.05, 1.75)))) + '%)';
+  $('hiw2').style.transform = 'translateY(' + (110 * (1 - OUT(prog(t, 1.2, 1.9)))) + '%)';
+  const pI = OUT(prog(t, 1.5, 2.1));
+  $('gI').style.opacity = Math.max(0.001, pI);
+  $('gI').style.transform = 'translateY(' + (40 * (1 - pI)) + 'px) scale(' + lerp(0.9, 1, pI) + ')';
+  const pY = drop(prog(t, 1.85, 2.55));
+  $('gY').style.opacity = t > 1.85 ? Math.max(0.001, clamp(pY * 2.2)) : 0.001;
+  $('gY').style.transform = 'translateY(' + (-620 * (1 - pY)) + 'px)';
+  const pc = OUT(prog(t, 2.85, 3.3));
+  const cw = (L.iy.right - L.iy.left);
+  Object.assign($('c1').style, { left: L.iy.left + 'px', top: (L.iy.bottom + 34) + 'px', width: (cw * pc) + 'px', opacity: pc ? 1 : 0, transform: 'scaleY(-1)' });
+  Object.assign($('c1l').style, { left: L.iy.left + 'px', top: (L.iy.bottom + 56) + 'px' });
+  $('c1l').textContent = type('IY. · DM Sans 600 · 300px · ' + Math.round(cw) + 'w', prog(t, 2.9, 3.3));
+
+  // ---- esfera: ponto → esfera (T1) → íris do olho → esfera (piscada) → lente (T3)
+  const pDot = drop(prog(t, 2.35, 2.95));
+  const grow = INOUT(prog(t, 3.2, 4.05));
+  let sx = lerp(L.dot.x, S.x, grow), sy = lerp(L.dot.y - 700 * (1 - pDot), S.y, grow), sd = lerp(L.dot.d, S.d, grow);
+  const toIris = INOUT(prog(t, 5.05, 5.75));
+  sx = lerp(sx, IRIS.x, toIris); sy = lerp(sy, IRIS.y, toIris); sd = lerp(sd, IRIS.d, toIris);
+  const fromIris = INOUT(prog(t, 7.75, 8.45));
+  sx = lerp(sx, S.x, fromIris); sy = lerp(sy, S.y, fromIris); sd = lerp(sd, S.d, fromIris);
+  // final: a esfera encolhe e pousa como o ponto do IY. (com um quique curto, como na abertura)
+  const toDot = INOUT(prog(t, 9.0, 9.75));
+  sx = lerp(sx, L.end.x, toDot); sy = lerp(sy, L.end.y, toDot); sd = lerp(sd, L.end.d, toDot);
+  sy -= 22 * Math.max(0, Math.sin(Math.PI * prog(t, 9.75, 10.0))) + 6 * Math.max(0, Math.sin(Math.PI * prog(t, 10.0, 10.12)));
+  sd *= 1 + 0.012 * Math.sin(t * 2.2) * prog(t, 4.0, 4.6);
+  // durante o olho, a esfera dá lugar à íris desenhada (mesma cor, mesmo lugar)
+  const eyeOn = prog(t, 5.7, 5.75) * (1 - prog(t, 7.6, 7.65));
+  // a esfera mergulha na linha do olho fechado e depois salta de volta
+  const squash = clamp(1 - INOUT(prog(t, 5.5, 5.75)) + INOUT(prog(t, 7.62, 7.95)), 0.0001, 1);
+  const irisP = OUT(prog(t, T.irisOpen, T.irisOpen + 0.7));
+  const sphere = $('sphere');
+  Object.assign(sphere.style, { left: (sx - sd / 2) + 'px', top: (sy - sd / 2) + 'px', width: sd + 'px', height: sd + 'px',
+    opacity: t > 2.35 ? (1 - eyeOn) : 0, transform: 'scaleY(' + squash + ')' });
+  $('sSolid').style.opacity = Math.max(1 - prog(t, 3.3, 3.9), prog(t, 9.3, 9.75));
+  const sh = 1 - prog(t, 9.2, 9.7);
+  sphere.style.boxShadow = 'inset -30px -40px 80px rgba(140,10,32,' + 0.35 * sh + '),inset 14px 18px 40px rgba(255,255,255,' + 0.45 * sh + '),0 40px 90px rgba(200,16,46,' + 0.25 * sh + ')';
+  const expand = INOUT(prog(t, T.expand, T.expand + 0.8));
+  const R = lerp(sd / 2, 1150, expand);
+  Object.assign($('rim').style, { left: (sx - R) + 'px', top: (sy - R) + 'px', width: 2 * R + 'px', height: 2 * R + 'px',
+    opacity: 0 });
+
+  // ensō em volta da esfera na frase 2
+  const enso = $('enso');
+  enso.setAttribute('cx', sx); enso.setAttribute('cy', sy); enso.setAttribute('r', sd / 2 + 46);
+  enso.setAttribute('transform', 'rotate(' + (-120 + t * 14) + ' ' + sx + ' ' + sy + ')');
+  enso.style.strokeDashoffset = 1 - 0.9 * OUT(prog(t, 4.0, 4.9));
+  enso.style.opacity = prog(t, 4.0, 4.1) * (1 - prog(t, 5.0, 5.3));
+
+  // ---- o olho
+  const draw1 = OUT(prog(t, 5.3, 6.0));
+  const open = OUT(prog(t, 5.75, 6.3));
+  // piscada: fecha 6.95→7.12, abre 7.12→7.3
+  const blink = t < 6.95 ? 0 : t < T.blink ? INOUT(prog(t, 6.95, T.blink)) : 1 - OUT(prog(t, T.blink, 7.32));
+  const lid = open * (1 - blink) * (1 - INOUT(prog(t, 7.38, 7.62)));
+  const und = OUT(prog(t, 7.62, 8.05));               // depois da piscada o traço se desfaz
+  const sc = Math.max(0.0001, lid);
+  ['sclera', 'upper', 'lower', 'clipShape'].forEach((id) => $(id).setAttribute('transform', 'scale(1 ' + (id === 'upper' || id === 'lower' ? Math.max(sc, 0.02) : sc) + ')'));
+  draw($('upper'), draw1 * (1 - und)); draw($('lower'), draw1 * (1 - und));
+  draw($('crease'), OUT(prog(t, 5.6, 6.2)) * (1 - und));
+  draw($('wing'), OUT(prog(t, 5.85, 6.15)) * (1 - und));
+  $('crease').setAttribute('transform', 'translate(0 ' + (-40 * (1 - open)) + ')');
+  $('sclera').style.opacity = prog(t, 5.7, 5.9) * (1 - prog(t, 7.55, 7.65));
+  $('eye').style.opacity = t > 5.25 ? 1 - prog(t, 7.95, 8.15) : 0;
+  // olhar: esquerda, direita, centro
+  const look = -95 * INOUT(prog(t, 6.25, 6.45)) + 175 * INOUT(prog(t, 6.55, 6.75)) - 80 * INOUT(prog(t, 6.82, 6.95));
+  const lookY = 8 * INOUT(prog(t, 6.25, 6.45)) - 8 * INOUT(prog(t, 6.82, 6.95));
+  $('iris').setAttribute('transform', 'translate(' + (sx - 960 + look) + ' ' + (sy - 540 + lookY) + ') scale(' + (sd / 300) + ')');
+  $('pupil').setAttribute('r', lerp(56, 40, INOUT(prog(t, 6.3, 6.6))) + 22 * INOUT(prog(t, 6.75, 7.0)));
+  $('iris').style.opacity = eyeOn;
+
+  // ---- portfólio abrindo como uma pupila (fenda → círculo)
+  const rx = lerp(0, R, irisP), ry = lerp(R * 0.96, R, irisP);
+  $('eI').style.transform = 'translateY(' + (110 * (1 - OUT(prog(t, 9.7, 10.5)))) + '%)';
+  $('eY').style.transform = 'translateY(' + (110 * (1 - OUT(prog(t, 9.82, 10.62)))) + '%)';
+  const pl = OUT(prog(t, 10.4, 11.2));
+  $('eLab').style.opacity = pl;
+  $('eLab').style.transform = 'translateY(' + (16 * (1 - pl)) + 'px)';
+
+  // ---- cena 2: Isabela Yukari
+  const out2 = INOUT(prog(t, 5.0, 5.5));
+  $('s2').style.opacity = 1 - out2;
+  $('s2').style.transform = 'translateX(' + (-90 * out2) + 'px)';
+  $('s2').style.filter = 'blur(' + (12 * out2) + 'px)';
+  $('w21').style.transform = 'translateX(' + (60 * (1 - OUT(prog(t, 3.65, 4.75)))) + '%)';
+  $('w21').style.opacity = OUT(prog(t, 3.65, 4.3));
+  $('w22').style.transform = 'translateX(' + (60 * (1 - OUT(prog(t, 3.8, 4.9)))) + '%)';
+  $('w22').style.opacity = OUT(prog(t, 3.8, 4.45));
+  $('k2').textContent = type('Senior Design Engineer · Product Designer · UX/UI', prog(t, 4.1, 4.9));
+
+  // ---- cena 3: Design Engineer
+  const out3 = INOUT(prog(t, 9.15, 9.7));
+  $('s3').style.opacity = (t > 7.7 ? 1 : 0) * (1 - out3);
+  $('s3').style.transform = 'translateX(' + (-90 * out3) + 'px)';
+  $('s3').style.filter = 'blur(' + (12 * out3) + 'px)';
+  $('w31').style.transform = 'translateX(' + (60 * (1 - OUT(prog(t, 7.75, 8.7)))) + '%)';
+  $('w31').style.opacity = OUT(prog(t, 7.75, 8.3));
+  $('w32').style.transform = 'translateX(' + (60 * (1 - OUT(prog(t, 7.87, 8.85)))) + '%)';
+  $('w32').style.opacity = OUT(prog(t, 7.87, 8.45));
+  $('k3').textContent = type('+10 years across design and engineering', prog(t, 8.1, 8.8));
+  const pc3 = OUT(prog(t, 8.5, 8.95));
+  Object.assign($('c3').style, { left: L.w31.left + 'px', top: (L.w31.top - 14) + 'px', width: (L.w31.width * pc3) + 'px', opacity: pc3 ? 1 : 0 });
+  Object.assign($('c3l').style, { left: (L.w31.right + 18) + 'px', top: (L.w31.top - 22) + 'px' });
+  $('c3l').textContent = type('w ' + Math.round(L.w31.width) + ' · #C8102E', prog(t, 8.55, 8.95));
+
+  // ---- vidro orbitando a esfera
+  const pills = [['p1', 1120, 290, 8.1], ['p2', 1580, 520, 8.25], ['p3', 1160, 830, 8.4]];
+  pills.forEach(([id, x, y, d], i) => {
+    const el = $(id);
+    const pin = OUT(prog(t, d, d + 0.9));
+    const po = INOUT(prog(t, 9.1, 9.65));
+    const fx = Math.sin(t * 1.4 + i * 2) * 10, fy = Math.cos(t * 1.1 + i) * 12;
+    const dx = (x - S.x) * po * 1.4, dy = (y - S.y) * po * 1.4;
+    el.style.left = (x + fx + dx + 120 * (1 - pin)) + 'px';
+    el.style.top = (y + fy + dy) + 'px';
+    el.style.opacity = pin * (1 - po);
+    el.style.transform = 'translate(-50%,-50%) scale(' + lerp(0.85, 1, pin) + ')';
+  });
+
+  // ---- carimbo final
+  const hk = OUT(prog(t, 11.55, 11.85));
+  $('hanko').style.opacity = 0;   // carimbo removido a pedido
+  $('hanko').style.transform = 'rotate(-4deg) scale(' + lerp(1.45, 1, hk) + ')';
+}
+window.render = render;
+
+// curva de tempo da versão "Pocket Money" (80 BPM, compasso = 3 s): [tempo do vídeo, tempo da animação].
+// Trecho de "Pocket Money" (120 BPM, golpe forte a cada 4 s). Desacelera e prende cada vírgula num golpe:
+// entra a batida em 4,5 s · texto sai no golpe de 8,5 s · piscada no golpe de 12,45 s · ponto pousa no golpe de 16,45 s.
+const WARP = [[0, 0], [3.0, 2.27], [3.5, 2.71], [4.0, 3.2], [4.5, 3.55], [7.5, 4.9], [8.5, 5.0],
+              [10.0, 5.75], [10.75, 6.3], [12.0, 6.95], [12.45, 7.12], [15.0, 8.85], [15.5, 9.15],
+              [16.45, 9.75], [17.5, 10.9], [18.3, 11.7], [20.0, 12.3]];
+window.renderV = (v) => {
+  let i = 1;
+  while (i < WARP.length - 1 && v > WARP[i][0]) i++;
+  const [v0, s0] = WARP[i - 1], [v1, s1] = WARP[i];
+  render(s0 + (s1 - s0) * clamp((v - v0) / (v1 - v0)));
+};
+window.ready = Promise.all([
+  document.fonts.load('500 20px "Noto Sans JP"', 'こんにちはイザベラ・ユカリデザインエンジニアようこそ'),
+  document.fonts.load('700 210px "DM Sans"'), document.fonts.load('600 300px "DM Sans"'),
+]).then(() => document.fonts.ready).then(() => new Promise((r) => {
+  r();
+})).then(() => { layout(); render(0); return true; });
+</script>
+</body>
+</html>

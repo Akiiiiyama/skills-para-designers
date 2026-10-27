@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<!-- Brand fonts: load every family and weight the scene uses (see window.ready below). -->
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+  /* 1. Tokens — copy them from the person's design system (CSS vars, Tailwind config, Figma). */
+  :root{--bg:#FFFFFF;--ink:#141414;--accent:#C8102E;--mute:#8A8A8A;--line:rgba(20,20,20,0.08)}
+  /* Canvas size = the format. 16:9 → 1920×1080 · Stories/Reels 9:16 → 1080×1920 (set WIDTH/HEIGHT too). */
+  html,body{margin:0;width:1920px;height:1080px;overflow:hidden;background:var(--bg)}
+  body{font-family:'DM Sans',system-ui,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+  .abs{position:absolute}
+  .layer{position:absolute;inset:0}
+  .gl{position:absolute;background:var(--line)}
+  .mask{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:0.06em}
+  .mask > span{display:inline-block}
+  .big{font-weight:700;text-transform:uppercase;letter-spacing:-0.03em;line-height:0.92;white-space:nowrap}
+  /* No CSS transitions/animations and no backdrop-filter: everything is driven by render(t).
+     will-change keeps each animated layer composited from frame 0 — a layer created mid-video
+     (first blur, first opacity change) is the usual cause of a one-frame glitch in the capture. */
+  .anim{will-change:transform,opacity,filter}
+</style>
+</head>
+<body>
+  <div class="layer">
+    <div class="gl" id="h1" style="left:0;top:540px;width:1920px;height:1px"></div>
+    <div class="gl" id="v1" style="left:960px;top:0;width:1px;height:1080px"></div>
+  </div>
+
+  <!-- Phrase 1 — one phrase per comma of the message -->
+  <div class="layer anim" id="s1">
+    <div class="big abs" style="left:170px;top:400px;font-size:200px">
+      <div><span class="mask"><span class="anim" id="w1">Hello</span></span></div>
+    </div>
+  </div>
+
+  <!-- Brand close: the hero object lands as the dot of the logo -->
+  <div class="layer" id="end" style="display:flex;align-items:center;justify-content:center">
+    <div id="logo" style="font-size:260px;font-weight:600;letter-spacing:-0.02em;line-height:1;white-space:pre"><span class="mask"><span id="lA">A</span></span><span class="mask"><span id="lB">B</span></span><span id="lDot" style="visibility:hidden">.</span></div>
+  </div>
+
+  <!-- Hero object: drawn as one element for the whole video so the story stays connected -->
+  <div class="abs anim" id="hero" style="border-radius:50%;overflow:hidden">
+    <div class="layer" id="heroGlass" style="border-radius:50%;background:radial-gradient(circle at 32% 28%,rgba(255,255,255,0.7),rgba(236,110,128,0.45) 30%,rgba(200,16,46,0.62) 62%,rgba(140,10,32,0.8) 100%)"></div>
+    <div class="layer" id="heroSolid" style="border-radius:50%;background:var(--accent)"></div>
+  </div>
+
+<script>
+// 2. Motion helpers. Easing curves should come from the design system too.
+function bez(x1, y1, x2, y2) {
+  return (x) => {
+    if (x <= 0) return 0; if (x >= 1) return 1;
+    let t = x;
+    for (let i = 0; i < 12; i++) {
+      const cx = 3 * x1 * t * (1 - t) ** 2 + 3 * x2 * t * t * (1 - t) + t ** 3 - x;
+      const d = 3 * x1 * (1 - t) ** 2 + 6 * (x2 - x1) * t * (1 - t) + 3 * (1 - x2) * t * t;
+      if (Math.abs(cx) < 1e-6 || d === 0) break;
+      t -= cx / d; t = Math.min(1, Math.max(0, t));
+    }
+    return 3 * y1 * t * (1 - t) ** 2 + 3 * y2 * t * t * (1 - t) + t ** 3;
+  };
+}
+const OUT = bez(.16, 1, .3, 1), INOUT = bez(.7, 0, .2, 1);
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const prog = (t, a, b) => clamp((t - a) / (b - a));          // 0→1 between scene times a and b
+const lerp = (a, b, p) => a + (b - a) * p;
+const $ = (id) => document.getElementById(id);
+const type = (s, p) => s.slice(0, Math.round(s.length * clamp(p)));   // typewriter
+function drop(u) {                                            // fall with two small bounces
+  u = clamp(u);
+  if (u < 0.6) return (u / 0.6) ** 2;
+  if (u < 0.85) { const s = (u - 0.6) / 0.25; return 1 - 0.1 * 4 * s * (1 - s); }
+  const s = (u - 0.85) / 0.15; return 1 - 0.025 * 4 * s * (1 - s);
+}
+
+// 3. Measure once (after fonts load): where the logo's dot sits.
+const L = {};
+function layout() {
+  const d = $('lDot').getBoundingClientRect(), h = $('logo').getBoundingClientRect().height;
+  L.end = { x: d.left + d.width / 2 - 3.5, y: d.top + h * 0.884, d: d.width * 0.62 };
+}
+
+// 4. The scene: a pure function of scene time t (seconds). Same t → same frame, always.
+//    Storyboard (scene time): 0–1 guides · 0.6 hero drops · 1.2–2.6 phrase · 2.6–3.6 hero becomes the logo dot.
+function render(t) {
+  const g = OUT(prog(t, 0, 1));
+  $('h1').style.transform = 'scaleX(' + g + ')';
+  $('v1').style.transform = 'scaleY(' + OUT(prog(t, 0.15, 1.15)) + ')';
+
+  $('w1').style.transform = 'translateY(' + (110 * (1 - OUT(prog(t, 1.2, 2.0)))) + '%)';
+  const out1 = INOUT(prog(t, 2.4, 2.8));
+  $('s1').style.opacity = 1 - out1;
+  $('s1').style.filter = 'blur(' + 12 * out1 + 'px)';
+
+  // hero: drops in, grows into a glass sphere, then shrinks into the logo dot
+  const fall = drop(prog(t, 0.6, 1.2));
+  const grow = INOUT(prog(t, 1.2, 2.0));
+  const land = INOUT(prog(t, 2.6, 3.3));
+  let x = lerp(1400, 1400, grow), y = lerp(540 - 700 * (1 - fall), 560, grow), d = lerp(40, 520, grow);
+  x = lerp(x, L.end.x, land); y = lerp(y, L.end.y, land); d = lerp(d, L.end.d, land);
+  y -= 20 * Math.max(0, Math.sin(Math.PI * prog(t, 3.3, 3.55)));
+  Object.assign($('hero').style, { left: (x - d / 2) + 'px', top: (y - d / 2) + 'px', width: d + 'px', height: d + 'px', opacity: t > 0.6 ? 1 : 0 });
+  $('heroSolid').style.opacity = Math.max(1 - prog(t, 1.3, 1.8), prog(t, 2.9, 3.3));
+
+  $('lA').style.transform = 'translateY(' + (110 * (1 - OUT(prog(t, 3.2, 3.9)))) + '%)';
+  $('lB').style.transform = 'translateY(' + (110 * (1 - OUT(prog(t, 3.3, 4.0)))) + '%)';
+}
+window.render = render;
+
+// 5. Time warp: [video time, scene time] pairs. Pin each comma/transition to a strong hit of the music
+//    (from analyze_beats.py) and stretch or compress the scene in between. Render with WARP=1.
+const WARP = [[0, 0], [2.0, 1.2], [4.0, 2.6], [6.0, 4.5]];
+window.renderV = (v) => {
+  let i = 1;
+  while (i < WARP.length - 1 && v > WARP[i][0]) i++;
+  const [v0, s0] = WARP[i - 1], [v1, s1] = WARP[i];
+  render(s0 + (s1 - s0) * clamp((v - v0) / (v1 - v0)));
+};
+
+// 6. Ready only after every font is loaded (load each family/weight explicitly — glyphs not yet
+//    on the page are not fetched by document.fonts.ready alone).
+window.ready = Promise.all([
+  document.fonts.load('700 200px "DM Sans"'), document.fonts.load('600 260px "DM Sans"'),
+]).then(() => document.fonts.ready).then(() => { layout(); render(0); return true; });
+</script>
+</body>
+</html>

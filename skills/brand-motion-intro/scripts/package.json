@@ -1,0 +1,9 @@
+{
+  "name": "brand-motion-intro-scripts",
+  "private": true,
+  "description": "Render an HTML motion scene to MP4 (headless Chrome + ffmpeg).",
+  "dependencies": {
+    "ffmpeg-static": "5.2.0",
+    "puppeteer-core": "23.11.1"
+  }
+}
