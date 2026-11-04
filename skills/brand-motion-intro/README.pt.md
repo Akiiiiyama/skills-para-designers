@@ -58,6 +58,10 @@ Exemplo de pedido:
 
 > Faz um vídeo de motion de 20s, 16:9, no estilo desta referência: <link>. Texto: "Hi, I'm IY., Isabela Yukari, Design Engineer". Cada vírgula é uma transição. Use o design system de ~/Portfolio. Clima: futurista com glassmorfismo, mas doce. Música: ~/Downloads/musica.mp3.
 
+Outro exemplo, para o **reel de tipografia cinética** (o roteiro está em [`references/kinetic-reel.md`](references/kinetic-reel.md)):
+
+> Faz um reel vertical de 14s no estilo deste vídeo: <arquivo>. Atue como especialista em craft design, sempre voltando para Design Engineer. Papéis em ordem: Design Engineer e depois Product Designer. Use o design system de ~/Portfolio e a música ~/Downloads/musica.mp3, só o trecho antes da voz.
+
 O que acontece depois:
 
 1. **Briefing**: o Claude pergunta só o que falta (formato, clima, música, claro ou escuro).
@@ -69,6 +73,26 @@ O que acontece depois:
 7. **Entrega**: o MP4 numa pasta que você escolher (por exemplo `~/Movies`), com o que foi e o que não foi conferido.
 
 Pedidos úteis depois: "faz também a versão para Stories (9:16)", "renderiza em 4K" (`SCALE=2`), "exporta uma versão só com efeitos sonoros para eu colocar a música no Instagram".
+
+### Passo a passo do reel Design Engineer
+
+O vídeo de exemplo em [`examples/de-reel`](examples/de-reel) foi feito assim:
+
+1. **Referência traduzida, não copiada.** Do reel de referência vieram só a gramática: corte de fundo na batida, par de pesos leve e negrito, rótulos em fonte mono e uma sequência rápida no fim. O conteúdo fala de design e código lado a lado.
+2. **Grade de batidas primeiro.** A música tem 130 BPM. Cada cena começa numa batida, e as mudanças grandes (nome, princípio, final) caem nos golpes fortes (2,25s, 8,71s e 12,40s).
+3. **Sete cenas em 14s:**
+   - **Hello.** com cursor vermelho e caixa de seleção do Figma mostrando o CSS;
+   - **I'm Isabela Yukari** digitado;
+   - **papéis**, Design Engineer no vermelho e depois Product Designer no cinza;
+   - **"I design in pixels" → "and ship in code."**, com ícones que viram ícones de código;
+   - **roleta de skills**;
+   - **8 artefatos** em sequência rápida;
+   - **final** com o ponto vermelho caindo como ponto final.
+4. **Um fio condutor.** O ponto vermelho é o cursor no começo e o ponto final no fim.
+5. **Música sem voz.** O vídeo usa só o começo da faixa, até a voz entrar. Uma palavra falada no meio foi trocada por um trecho igual de antes, cortado na batida.
+6. **Prévia, aprovação e só então alta resolução.** Primeiro uma prancha de quadros, depois o vídeo em 1080p e, aprovado, 2160×3840 (`SCALE=2 STABLE=1`).
+7. **Versão desktop recomposta.** A versão 16:9 move as posições para a tela larga. Nada é cortado.
+8. **Nas revisões, mude só o que foi pedido.** Para tirar uma cena que a pessoa gostou, pergunte antes.
 
 ## 5. Rodar os scripts você mesmo (opcional)
 

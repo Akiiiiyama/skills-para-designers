@@ -9,6 +9,7 @@
 // Env: DUR (s, default 12) · FPS (default 60) · WIDTH/HEIGHT (CSS px, default 1920×1080)
 //      SCALE (device pixel ratio: 2 → 3840×2160 from a 1920×1080 scene) · WARP=1 · CRF (default 14)
 //      CHROME (path to Chrome; default macOS location)
+//      STABLE=1 → capture each frame again until two screenshots match (fixes torn frames and skipped layers)
 const puppeteer = require('puppeteer-core');
 const { spawn } = require('child_process');
 const fs = require('fs');
@@ -65,7 +66,13 @@ const settle = (page) => page.evaluate(() => new Promise((r) => requestAnimation
     for (let i = 0; i < n; i++) {
       await page.evaluate((fn, t) => window[fn](t), FN, i / FPS);
       await settle(page);
-      const buf = await page.screenshot({ type: 'png' });
+      let buf = await page.screenshot({ type: 'png' });
+      for (let k = 0; process.env.STABLE && k < 6; k++) {
+        await settle(page);
+        const again = await page.screenshot({ type: 'png' });
+        if (Buffer.from(again).equals(Buffer.from(buf))) break;
+        buf = again;
+      }
       if (!ff.stdin.write(buf)) await new Promise((r) => ff.stdin.once('drain', r));
       if (i % FPS === 0) console.log(`frame ${i}/${n}`);
     }

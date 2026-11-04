@@ -58,6 +58,10 @@ Example request:
 
 > Make a 20s 16:9 motion video in the style of this reference: <link>. Text: "Hi, I'm IY., Isabela Yukari, Design Engineer" — each comma is a transition. Use the design system in ~/Portfolio. Mood: futuristic glassmorphism, but sweet. Music: ~/Downloads/track.mp3.
 
+Another example, for the **kinetic-type reel** (the recipe is in [`references/kinetic-reel.md`](references/kinetic-reel.md)):
+
+> Make a 14s vertical reel in the style of this video: <file>. Act as a craft design expert, always coming back to Design Engineer. Roles in order: Design Engineer, then Product Designer. Use the design system in ~/Portfolio and ~/Downloads/track.mp3, only the part before the vocals.
+
 What happens next:
 
 1. **Brief** — Claude asks only what's missing (format, mood, music, light or dark).

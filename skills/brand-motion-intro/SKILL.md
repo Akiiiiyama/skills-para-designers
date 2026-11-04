@@ -11,6 +11,13 @@ Install and usage for people: [`README.md`](README.md) · [`README.pt.md`](READM
 
 Built from a real project: [`examples/iy-intro/scene.html`](examples/iy-intro/scene.html) — "Hi, I'm IY., Isabela Yukari, Design Engineer", 20 s, 60 fps, synced to a 120 BPM track.
 
+## Two recipes
+
+- **Hero-object intro** (the steps below): one line with commas, a hero object that travels the whole video and closes the loop in the logo, scenes time-warped to the music. Example: `examples/iy-intro`.
+- **Kinetic-type role reel**: a 14 s reel for Reels/portfolio with type on every beat, hard background cuts, a role sequence, a design ↔ code principle, a skills wheel and a fast craft montage. Follow [`references/kinetic-reel.md`](references/kinetic-reel.md). Example: `examples/de-reel`.
+
+Pick the reel recipe when the reference is a fast "creative director" reel or the person wants to present a role (e.g. Design Engineer); pick the intro for a slower, symbolic signature.
+
 ## When to use
 
 - The person shares a reference reel ("I want a video in this style") or asks for a motion intro, brand reel, portfolio teaser or animated signature.
@@ -133,8 +140,12 @@ Look at any flagged frame before re-rendering. Rendering is ~3 frames/s: run lon
 - **ffmpeg-static without the binary**: if npm blocked install scripts, run `node node_modules/ffmpeg-static/install.js` once.
 - **Instagram/login walls**: reference posts often won't play without login; ask for screenshots instead of fighting it.
 - **Dark vs. brand**: confirm light/dark with the person before building; it's the most expensive thing to change later.
+- **Layers skipped in a frame** (glass, blur, a whole scene missing for one frame): render finals with `STABLE=1`, which captures each frame again until two screenshots match.
+- **Scope creep in revisions**: change only what the person asked. Removing a scene they liked to make room costs a full re-render and their trust; ask first.
+- **Temporary folders get wiped**: keep scene sources in a repository, not only in `/tmp` or a scratchpad. The scene is the only editable source of the video.
 
 ## Examples
 
 - [`examples/iy-intro/scene.html`](examples/iy-intro/scene.html) — full scene: blueprint guides, "Hi, I'm IY." with falling letters, dot → glass sphere with ensō, almond eye that looks around and blinks (the middle transition), "Design Engineer" with glass chips, sphere → logo dot. Vertical katakana per phrase. `WARP` pinned to a 120 BPM track: drop at 4.5 s, blink at 12.45 s, dot lands at 16.45 s.
+- [`examples/de-reel/scene.html`](examples/de-reel/scene.html) and [`scene-wide.html`](examples/de-reel/scene-wide.html) — the kinetic-type "Design Engineer" reel, 14 s, 9:16 and 16:9, on a 130 BPM beat grid (no warp). Step by step in [`references/kinetic-reel.md`](references/kinetic-reel.md).
 - [`templates/scene.html`](templates/scene.html) — minimal starting point with the same structure (6 s, one phrase, hero → logo dot).
