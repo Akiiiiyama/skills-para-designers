@@ -1,0 +1,331 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  /* Reel Design Engineer (9:16, 14 s). Inspirado em reel de direção criativa, traduzido para a ponte design ↔ código.
+     Uma fonte (DM Sans) em contraste leve/negrito, rótulos em mono, fundo que troca no golpe, o ponto vermelho como âncora. */
+  :root{--ink:#141414;--paper:#FFFFFF;--grey:#F2F2F2;--accent:#C8102E;--mute:#8A8A8A}
+  html,body{margin:0;width:1080px;height:1920px;overflow:hidden}
+  body{font-family:'DM Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;background:var(--ink)}
+  .abs{position:absolute}
+  .layer{position:absolute;inset:0}
+  .mono{font-family:'JetBrains Mono',ui-monospace,monospace;letter-spacing:0.04em;white-space:pre}
+  .lt{font-weight:300} .bd{font-weight:700}
+  .center{left:0;width:1080px;text-align:center;white-space:nowrap}
+  .mask{display:inline-block;overflow:hidden;vertical-align:top;padding:0 0.08em 0.18em;margin:0 -0.08em -0.18em}
+  .mask > span{display:inline-block}
+  .scene{position:absolute;inset:0;visibility:hidden}
+  .icon{position:absolute;width:92px;height:92px;margin:-46px 0 0 -46px;display:flex;align-items:center;justify-content:center}
+  .tile{position:absolute;inset:0;visibility:hidden}
+</style>
+</head>
+<body>
+  <div class="layer" id="bg"></div>
+
+  <!-- grade com cruzes (abertura) -->
+  <svg class="layer" id="grid" width="1080" height="1920"></svg>
+
+  <!-- rótulos fixos (fora das áreas que a interface do Instagram cobre) -->
+  <div class="mono abs" id="labL" style="left:72px;top:300px;font-size:22px"></div>
+  <div class="mono abs" id="labR" style="right:72px;top:300px;font-size:22px;text-align:right"></div>
+
+  <!-- A: Hello. -->
+  <div class="scene" id="sA">
+    <div class="abs" id="helloBox" style="left:0;top:860px;width:1080px;text-align:center;font-size:170px;font-weight:700;color:#FFFFFF;letter-spacing:-0.03em;line-height:1">
+      <span id="helloTx"></span><span id="helloEnd" style="display:inline-block;width:0;height:0;vertical-align:baseline"></span>
+    </div>
+    <svg class="layer" id="sel" width="1080" height="1920" style="overflow:visible"></svg>
+    <div class="mono abs" id="specD" style="font-size:20px;color:#FFFFFF"></div>
+    <div class="mono abs" id="specC" style="font-size:22px;color:var(--accent)"></div>
+  </div>
+
+  <!-- B: I'm Isabela Yukari -->
+  <div class="scene" id="sB">
+    <div class="abs center bd" style="top:720px;font-size:96px;letter-spacing:-0.02em"><span class="mask"><span id="im">I’m</span></span></div>
+    <div class="abs center" id="nameBox" style="top:860px;font-size:128px;letter-spacing:-0.03em;line-height:1;transform-origin:540px 64px">
+      <span id="nameTx"></span><span id="nameEnd" style="display:inline-block;width:0;height:0;vertical-align:baseline"></span>
+    </div>
+  </div>
+
+  <!-- C: papéis -->
+  <div class="scene" id="sC">
+    <div class="abs center" style="top:880px;font-size:118px;letter-spacing:-0.03em;line-height:1"><span class="mask"><span id="role"></span></span></div>
+  </div>
+
+  <!-- D: metáfora com ícones -->
+  <div class="scene" id="sD">
+    <div class="abs center" style="top:900px;font-size:84px;letter-spacing:-0.02em;color:#FFFFFF;line-height:1.05"><span class="mask"><span id="meta1"></span></span></div>
+    <div id="icons"></div>
+  </div>
+
+  <!-- E: roleta de skills -->
+  <div class="scene" id="sE">
+    <div class="abs bd" style="left:72px;top:920px;font-size:58px;letter-spacing:-0.02em">I ship <span style="color:var(--accent)">•</span></div>
+    <div id="wheel"></div>
+  </div>
+
+  <!-- F: sequência rápida de artefatos -->
+  <div class="scene" id="sF"></div>
+
+  <!-- G: final -->
+  <div class="scene" id="sG">
+    <div class="abs center" id="endName" style="top:860px;font-size:128px;letter-spacing:-0.03em;line-height:1;color:#FFFFFF">
+      <span class="lt">Isabela </span><span class="bd">Yukari</span><span id="endEnd" style="display:inline-block;width:0;height:0;vertical-align:baseline"></span>
+    </div>
+    <div class="mono abs center" id="tag" style="top:1040px;font-size:26px;letter-spacing:0.28em;color:#FFFFFF"></div>
+  </div>
+
+  <!-- o ponto vermelho: cursor de texto / ponto final -->
+  <div class="abs" id="dot" style="background:var(--accent)"></div>
+
+<script>
+function bez(x1, y1, x2, y2) {
+  return (x) => {
+    if (x <= 0) return 0; if (x >= 1) return 1;
+    let t = x;
+    for (let i = 0; i < 12; i++) {
+      const cx = 3 * x1 * t * (1 - t) ** 2 + 3 * x2 * t * t * (1 - t) + t ** 3 - x;
+      const d = 3 * x1 * (1 - t) ** 2 + 6 * (x2 - x1) * t * (1 - t) + 3 * (1 - x2) * t * t;
+      if (Math.abs(cx) < 1e-6 || d === 0) break;
+      t -= cx / d; t = Math.min(1, Math.max(0, t));
+    }
+    return 3 * y1 * t * (1 - t) ** 2 + 3 * y2 * t * t * (1 - t) + t ** 3;
+  };
+}
+const OUT = bez(.16, 1, .3, 1), INOUT = bez(.7, 0, .2, 1);
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const prog = (t, a, b) => clamp((t - a) / (b - a));
+const lerp = (a, b, p) => a + (b - a) * p;
+const $ = (id) => document.getElementById(id);
+const spring = (t, t0, k = 1) => { if (t <= t0) return 0; const x = (t - t0) * k; return 1 - Math.exp(-x * 8) * Math.cos(x * 15); };
+const up = (el, p, amt = 110) => { el.style.transform = 'translateY(' + (amt * (1 - p)) + '%)'; };
+const blink = (t) => (Math.floor(t / 0.265) % 2 === 0 ? 1 : 0);
+
+// grade de batidas (130 BPM): golpes fortes 2,251 · 5,02 · 8,712 · 12,404
+const B = 0.46154, BEAT = (k) => 0.405 + k * B;
+const T = { hello: 0.75, name: 2.251, roles: 4.558, meta: 8.712, meta2: 9.635, wheel: 10.097, mont: 11.482, end: 12.404 };
+
+const ROLES = [['Design ', 'Engineer', '#C8102E', '#FFFFFF'], ['Product ', 'Designer', '#F2F2F2', '#141414']];
+const ROLE_AT = [T.roles, BEAT(14)]; // Design Engineer 5 batidas, Product Designer 4 batidas
+const SKILLS = ['Design Systems', 'Prototyping', 'Motion', 'Accessibility', 'Design Tokens', 'React', 'Front-end',
+                'Interaction', 'AI-native UX', 'Product Strategy', 'UX Research'];
+
+// ícones: ferramentas de design → ferramentas de código (traço branco)
+const S = 'fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"';
+const ICON_D = [
+  `<svg width="92" height="92" viewBox="0 0 30 30"><path d="M7 4 L7 24 L12 19.5 L15.6 27 L19 25.5 L15.5 18 L22 18 Z" ${S}/></svg>`,
+  `<svg width="92" height="92" viewBox="0 0 30 30"><path d="M9 4 V26 M21 4 V26 M4 9 H26 M4 21 H26" ${S}/></svg>`,
+  `<svg width="92" height="92" viewBox="0 0 30 30"><path d="M15 4 L22 18 L15 26 L8 18 Z M15 4 V15" ${S}/><circle cx="15" cy="17" r="2" ${S}/></svg>`,
+  `<svg width="92" height="92" viewBox="0 0 30 30"><rect x="5" y="5" width="20" height="20" rx="2" ${S}/></svg>`,
+  `<svg width="92" height="92" viewBox="0 0 30 30"><path d="M7 7 H23 M15 7 V24 M11 24 H19" ${S}/></svg>`,
+  `<svg width="92" height="92" viewBox="0 0 30 30"><rect x="4" y="6" width="22" height="5" rx="1.5" ${S}/><rect x="4" y="13" width="22" height="5" rx="1.5" ${S}/><rect x="4" y="20" width="22" height="5" rx="1.5" ${S}/></svg>`,
+];
+const ICON_C = [
+  `<svg width="92" height="92" viewBox="0 0 30 30"><path d="M10 8 L4 15 L10 22 M20 8 L26 15 L20 22 M17 6 L13 24" ${S}/></svg>`,
+  `<svg width="92" height="92" viewBox="0 0 30 30"><rect x="3" y="5" width="24" height="20" rx="3" ${S}/><path d="M8 12 L12 15 L8 18 M14 19 H21" ${S}/></svg>`,
+  `<svg width="92" height="92" viewBox="0 0 30 30"><circle cx="9" cy="7" r="3" ${S}/><circle cx="9" cy="23" r="3" ${S}/><circle cx="21" cy="11" r="3" ${S}/><path d="M9 10 V20 M21 14 C21 18 14 17 10 21" ${S}/></svg>`,
+  `<svg width="92" height="92" viewBox="0 0 30 30"><path d="M11 5 C7 5 8 11 5 15 C8 19 7 25 11 25 M19 5 C23 5 22 11 25 15 C22 19 23 25 19 25" ${S}/></svg>`,
+  `<svg width="92" height="92" viewBox="0 0 30 30"><path d="M6 15 L12 21 L24 8" ${S}/></svg>`,
+  `<svg width="92" height="92" viewBox="0 0 30 30"><path d="M10 6 L23 15 L10 24 Z" ${S}/></svg>`,
+];
+
+// artefatos da sequência rápida: o IY. em 8 linguagens de Design Engineer
+const IY = (c, s, dot) => `<div class="abs center bd" style="top:760px;font-size:${s || 300}px;letter-spacing:-0.03em;line-height:1;color:${c}">IY<span style="color:${dot || 'var(--accent)'}">.</span></div>`;
+const MONT = [
+  `<div class="layer" style="background:#F2F2F2">${IY('#141414')}
+     <div class="abs" style="left:150px;top:1180px;display:flex;gap:24px">${['#141414', '#FFFFFF', '#C8102E', '#8A8A8A'].map((c) => `<div><div style="width:170px;height:170px;background:${c};border:1px solid rgba(20,20,20,.12)"></div><div class="mono" style="font-size:18px;margin-top:10px;color:#141414">${c}</div></div>`).join('')}</div>
+     <div class="mono abs" style="left:150px;top:1440px;font-size:22px;color:#141414">--accent: #C8102E;</div></div>`,
+  `<div class="layer" style="background:#141414">
+     <div class="mono abs" style="left:110px;top:560px;font-size:30px;line-height:1.7;color:#8A8A8A">1  <span style="color:#C8102E">import</span> <span style="color:#fff">{ Logo }</span> <span style="color:#C8102E">from</span> <span style="color:#F2C14E">'./iy'</span>\n2\n3  <span style="color:#fff">&lt;</span><span style="color:#7FB2FF">Logo</span> <span style="color:#F2C14E">name</span><span style="color:#fff">=</span><span style="color:#9BE39B">"IY"</span> <span style="color:#fff">/&gt;</span></div>${IY('#FFFFFF', 280).replace('top:760px', 'top:880px')}</div>`,
+  `<div class="layer" style="background:#FFFFFF">${IY('#141414')}
+     <svg class="layer" width="1080" height="1920"><g stroke="#C8102E" stroke-width="2" fill="none"><path d="M190 730 V700 H890 V730"/><path d="M150 790 H120 V1040 H150"/></g></svg>
+     <div class="mono abs" style="left:500px;top:660px;font-size:22px;color:#C8102E">24</div><div class="mono abs" style="left:76px;top:900px;font-size:22px;color:#C8102E">48</div></div>`,
+  `<div class="layer" style="background:#141414">${IY('#FFFFFF')}
+     <div class="abs" style="left:390px;top:1200px;width:300px;height:110px;border-radius:999px;background:#2A2A2A"><div style="position:absolute;right:10px;top:10px;width:90px;height:90px;border-radius:50%;background:#C8102E"></div></div>
+     <div class="mono abs center" style="top:1350px;font-size:22px;color:#8A8A8A">theme: dark</div></div>`,
+  `<div class="layer" style="background:#FFFFFF">${IY('#141414', 260)}
+     <div class="abs" style="left:110px;top:1180px;display:flex;gap:30px">${[['#141414', '#fff', 'default'], ['#2E2E2E', '#fff', 'hover'], ['#C8102E', '#fff', 'pressed']].map(([b, c, l]) => `<div style="text-align:center"><div style="width:250px;height:96px;border-radius:999px;background:${b};color:${c};display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:700">IY.</div><div class="mono" style="font-size:18px;margin-top:12px;color:#8A8A8A">${l}</div></div>`).join('')}</div></div>`,
+  `<div class="layer" style="background:#F2F2F2">
+     <div class="abs" style="left:120px;top:620px;width:840px;height:560px;border:3px solid #141414;border-radius:18px"></div>
+     <div class="abs" style="left:690px;top:760px;width:300px;height:600px;border:3px solid #141414;border-radius:40px;background:#F2F2F2"></div>
+     ${IY('#141414', 220).replace('top:760px', 'top:800px')}
+     <div class="mono abs" style="left:120px;top:1200px;font-size:20px;color:#141414">1440 · 390</div></div>`,
+  `<div class="layer" style="background:#C8102E">${IY('#FFFFFF', 300, '#141414')}
+     <div class="abs" style="left:350px;top:1180px;padding:18px 34px;border-radius:999px;background:#FFFFFF;color:#141414;font-size:34px;font-weight:700">AA 7.2 : 1</div></div>`,
+  `<div class="layer" style="background:#141414">${IY('#FFFFFF')}
+     <div class="mono abs" style="left:110px;top:1180px;font-size:28px;line-height:1.7;color:#FFFFFF"><span style="color:#8A8A8A">$</span> git commit -m <span style="color:#9BE39B">"feat: hello world"</span>\n<span style="color:#C8102E">✓</span> 1 file changed</div></div>`,
+];
+
+let L = {};
+function layout() {
+  // grade da abertura: colunas e linhas finas com cruzes nos encontros
+  const g = $('grid'); let h = '';
+  const xs = [72, 312, 540, 768, 1008], ys = [400, 700, 960, 1220, 1520];
+  xs.forEach((x) => { h += `<line x1="${x}" y1="0" x2="${x}" y2="1920" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>`; });
+  ys.forEach((y) => { h += `<line x1="0" y1="${y}" x2="1080" y2="${y}" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>`; });
+  xs.forEach((x) => ys.forEach((y) => { h += `<path d="M${x - 7} ${y} H${x + 7} M${x} ${y - 7} V${y + 7}" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>`; }));
+  g.innerHTML = h;
+  // ícones
+  let ic = '';
+  for (let i = 0; i < 6; i++) ic += `<div class="icon" id="ic${i}"><div id="icd${i}" style="position:absolute">${ICON_D[i]}</div><div id="icc${i}" style="position:absolute">${ICON_C[i]}</div></div>`;
+  $('icons').innerHTML = ic;
+  // roleta
+  $('wheel').innerHTML = SKILLS.map((s, i) => `<div class="abs" id="sk${i}" style="left:330px;font-size:64px;letter-spacing:-0.02em;white-space:nowrap;transform-origin:0 50%">${s}</div>`).join('');
+  // artefatos
+  $('sF').innerHTML = MONT.map((m, i) => `<div class="tile" id="mt${i}">${m}</div>`).join('');
+}
+
+// texto digitado com par leve/negrito: [[texto, classe], ...]
+function typeInto(el, parts, n) {
+  let left = n, html = '';
+  for (const [s, c] of parts) { const k = Math.max(0, Math.min(s.length, left)); left -= k; if (k) html += `<span class="${c}">${s.slice(0, k)}</span>`; }
+  el.innerHTML = html;
+}
+
+function show(id, on) { $(id).style.visibility = on ? 'visible' : 'hidden'; }
+
+function render(t) {
+  // ---- fundo e cor do texto por cena (cortes secos no golpe)
+  let bg = '#141414', fg = '#FFFFFF', lab = ['HELLO', '00 / 05'];
+  if (t >= T.name) { bg = '#FFFFFF'; fg = '#141414'; lab = ['NAME', '01 / 05']; }
+  let ri = -1;
+  if (t >= T.roles && t < T.meta) { ri = t >= ROLE_AT[1] ? 1 : 0; bg = ROLES[ri][2]; fg = ROLES[ri][3]; lab = ['ROLE', String(ri + 1).padStart(2, '0') + ' / 02']; }
+  if (t >= T.meta) { bg = '#141414'; fg = '#FFFFFF'; lab = ['PRINCIPLE', '03 / 05']; }
+  if (t >= T.wheel) { bg = '#FFFFFF'; fg = '#141414'; lab = ['SKILLS', '11']; }
+  if (t >= T.mont) { lab = ['CRAFT', '04 / 05']; }
+  if (t >= T.end) { bg = '#141414'; fg = '#FFFFFF'; lab = ['', '05 / 05']; }
+  $('bg').style.background = bg;
+  $('labL').textContent = lab[0]; $('labR').textContent = lab[1];
+  $('labL').style.color = $('labR').style.color = fg;
+  const labOn = t > 0.4 && !(t >= T.mont && t < T.end);
+  $('labL').style.opacity = $('labR').style.opacity = labOn ? 0.75 : 0;
+
+  // grade: só na abertura, desenhada de cima
+  $('grid').style.opacity = t < T.name ? OUT(prog(t, 0.0, 0.6)) : 0;
+
+  const dot = $('dot');
+  let dotOn = false;
+
+  // ---- A: Hello. — cursor vermelho digita e vira o ponto; seleção com spec de design e de código
+  show('sA', t < T.name);
+  if (t < T.name) {
+    const n = Math.round(5 * prog(t, T.hello, 1.55));
+    $('helloTx').textContent = 'Hello'.slice(0, n);
+    const e = $('helloEnd').getBoundingClientRect(), box = $('helloBox').getBoundingClientRect();
+    const fs = 170, toDot = OUT(prog(t, 1.65, 1.9));
+    const dd = fs * 0.2, cw = lerp(8, dd, toDot), ch = lerp(fs * 0.86, dd, toDot);
+    const cx = e.left + 6 + lerp(0, fs * 0.04 + dd / 2, toDot), cyBottom = e.top + fs * 0.16 * (1 - toDot);
+    dotOn = (t < 1.65 ? blink(t) : 1) === 1 && t > 0.3;
+    Object.assign(dot.style, { left: (cx - cw / 2) + 'px', top: (cyBottom - ch) + 'px', width: cw + 'px', height: ch + 'px', borderRadius: toDot > 0.5 ? '50%' : '3px' });
+    // seleção (aparece no fim)
+    const sp = OUT(prog(t, 1.85, 2.15));
+    const sx0 = box.left + (1080 - box.width) / 2 * 0, r = $('helloTx').getBoundingClientRect();
+    const x0 = r.left - 18, y0 = r.top + 10, x1 = cx + dd / 2 + 18, y1 = r.bottom - 8;
+    const hs = 12;
+    $('sel').innerHTML = sp > 0 ? `<g opacity="${sp}"><rect x="${x0}" y="${y0}" width="${(x1 - x0) * sp}" height="${y1 - y0}" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>` +
+      [[x0, y0], [x1, y0], [x0, y1], [x1, y1]].map(([x, y]) => `<rect x="${x - hs / 2}" y="${y - hs / 2}" width="${hs}" height="${hs}" fill="#141414" stroke="#FFFFFF" stroke-width="1.5"/>`).join('') + '</g>' : '';
+    $('specD').textContent = sp > 0 ? 'x ' + Math.round(x0) + '  y ' + Math.round(y0) + '      W ' + Math.round(x1 - x0) + '  H ' + Math.round(y1 - y0) : '';
+    Object.assign($('specD').style, { left: x0 + 'px', top: (y0 - 40) + 'px', opacity: sp });
+    $('specC').textContent = sp > 0 ? 'font: 700 170px "DM Sans";' : '';
+    Object.assign($('specC').style, { left: x0 + 'px', top: (y1 + 22) + 'px', opacity: OUT(prog(t, 1.95, 2.2)) });
+  }
+
+  // ---- B: I'm Isabela Yukari (digitado, par leve/negrito)
+  show('sB', t >= T.name && t < T.roles);
+  if (t >= T.name && t < T.roles) {
+    up($('im'), OUT(prog(t, T.name, T.name + 0.3)));
+    const parts = [['Isabela ', 'lt'], ['Yukari', 'bd']];
+    const n = Math.round(14 * prog(t, 2.5, 3.4));
+    typeInto($('nameTx'), parts, n);
+    const shrink = INOUT(prog(t, 4.15, 4.55));
+    $('nameBox').style.transform = 'scale(' + lerp(1, 0.35, shrink) + ')';
+    $('nameBox').style.opacity = 1 - prog(t, 4.35, 4.55);
+    $('im').parentElement.style.opacity = 1 - prog(t, 4.1, 4.3);
+    const e = $('nameEnd').getBoundingClientRect();
+    dotOn = blink(t) === 1 && shrink === 0;
+    Object.assign(dot.style, { left: (e.left + 8) + 'px', top: (e.top - 108) + 'px', width: '7px', height: '120px', borderRadius: '3px' });
+    $('nameTx').style.color = '#141414'; $('im').style.color = '#141414';
+  }
+
+  // ---- C: papéis — Design Engineer, depois Product Designer; fundo troca no corte
+  show('sC', ri >= 0);
+  if (ri >= 0) {
+    const [a, b2] = ROLES[ri];
+    $('role').innerHTML = `<span class="lt">${a}</span><span class="bd">${b2}</span>`;
+    $('role').style.color = fg;
+    const t0 = ROLE_AT[ri];
+    up($('role'), OUT(prog(t, t0, t0 + 0.45)));
+  }
+
+  // ---- D: "I design in pixels" → "and ship in code." com ícones girando que se transformam
+  show('sD', t >= T.meta && t < T.wheel);
+  if (t >= T.meta && t < T.wheel) {
+    const second = t >= T.meta2;
+    $('meta1').innerHTML = second ? '<span class="lt">and ship in </span><span class="bd" style="color:#C8102E">code</span><span class="bd">.</span>'
+                                  : '<span class="lt">I design in </span><span class="bd">pixels</span>';
+    up($('meta1'), OUT(prog(t, second ? T.meta2 : T.meta, (second ? T.meta2 : T.meta) + 0.3)));
+    const rot = (t - T.meta) * 0.6;
+    for (let i = 0; i < 6; i++) {
+      const a = rot + i * Math.PI / 3, R = 330;
+      const pIn = spring(t, T.meta + i * 0.05, 1.0);
+      const el = $('ic' + i);
+      el.style.left = (540 + Math.cos(a) * R) + 'px';
+      el.style.top = (930 + Math.sin(a) * R * 1.15) + 'px';
+      const flip = spring(t, T.meta2 + i * 0.04, 1.0);
+      el.style.transform = 'scale(' + pIn + ')';
+      $('icd' + i).style.transform = 'scale(' + Math.max(0, 1 - flip * 1.4) + ')';
+      $('icc' + i).style.transform = 'scale(' + clamp(flip * 1.4 - 0.4) + ')';
+      $('icc' + i).style.opacity = flip > 0.3 ? 1 : 0;
+    }
+  }
+
+  // ---- E: roleta de skills (gira um item por batida, item ativo vermelho)
+  show('sE', t >= T.wheel && t < T.mont);
+  if (t >= T.wheel && t < T.mont) {
+    const steps = [10.097, 10.558, 11.02];
+    let pos = 0; steps.forEach((s, k) => { pos += spring(t, s, 1.1); });
+    const center = 3 + pos;
+    for (let i = 0; i < SKILLS.length; i++) {
+      const th = (i - center) * 0.38;
+      const el = $('sk' + i);
+      const y = 960 + Math.sin(th) * 420;
+      const c = Math.cos(th);
+      el.style.top = (y - 40) + 'px';
+      el.style.opacity = c > 0 ? Math.pow(c, 2.2) : 0;
+      el.style.transform = 'scaleY(' + Math.max(0.05, c) + ')';
+      const act = Math.abs(i - center) < 0.5;
+      el.style.color = act ? '#C8102E' : '#141414';
+      el.style.fontWeight = act ? 700 : 400;
+    }
+  }
+
+  // ---- F: sequência rápida — um artefato por semicolcheia
+  show('sF', t >= T.mont && t < T.end);
+  const mi = Math.min(MONT.length - 1, Math.floor((t - T.mont) / ((T.end - T.mont) / MONT.length)));
+  MONT.forEach((_, i) => show('mt' + i, t >= T.mont && t < T.end && i === mi));
+
+  // ---- G: final
+  show('sG', t >= T.end);
+  if (t >= T.end) {
+    const p = spring(t, T.end, 1.0);
+    $('endName').style.transform = 'scale(' + lerp(0.94, 1, p) + ')';
+    $('tag').textContent = 'DESIGN ENGINEER — 2026'.slice(0, Math.round(22 * prog(t, 12.65, 13.25)));
+    const e = $('endEnd').getBoundingClientRect(), dd = 128 * 0.2;
+    dotOn = true;
+    const land = spring(t, T.end, 1.2);
+    Object.assign(dot.style, { left: (e.left + 128 * 0.05) + 'px', top: (e.top - dd - (1 - land) * 60) + 'px', width: dd + 'px', height: dd + 'px', borderRadius: '50%' });
+    $('sG').style.opacity = 1 - prog(t, 13.6, 14.0);
+    if (t > 13.6) dot.style.opacity = 1 - prog(t, 13.6, 14.0);
+  }
+  dot.style.visibility = dotOn ? 'visible' : 'hidden';
+  if (t < 13.6) dot.style.opacity = 1;
+}
+window.render = render;
+window.ready = Promise.all([
+  document.fonts.load("700 170px 'DM Sans'"), document.fonts.load("300 128px 'DM Sans'"), document.fonts.load("500 22px 'JetBrains Mono'"),
+]).then(() => document.fonts.ready).then(() => { layout(); render(0); return true; });
+</script>
+</body>
+</html>
