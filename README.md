@@ -12,6 +12,8 @@ Claude Code skills that help designers ship better UI with AI: accessibility rev
 | `token-check` | Flags hard-coded colors, spacing and radii that should be design tokens. | Planned |
 | `portfolio-device-motion` | Turns app screenshots or screen recordings into motion inside an iPhone frame for a portfolio section. | Planned |
 | [`brand-motion-intro`](skills/brand-motion-intro/SKILL.md) | Plans and renders a 10–20 s personal-brand motion video from a one-line message, the design system and a licensed track, with every transition on the beat. Includes render, beat analysis, audio splice and flicker-scan scripts. | Draft |
+| [`identity-design-system`](skills/identity-design-system/SKILL.md) | Creates your own design system from the identity you want: interview, directions, a name with meaning, a visual proposal for approval, and a starter with DTCG tokens, light/dark CSS and contrast tests. | Draft |
+| [`lotus-design-system`](skills/lotus-design-system/SKILL.md) | The real process behind IY Lotus, from a brand reel to tokens, React, a Figma plugin and a live site — to retell it or extend it. | Draft |
 
 ## How a skill is organized
 
@@ -31,6 +33,8 @@ Start from [`templates/SKILL.template.md`](templates/SKILL.template.md).
 Copy a skill folder into `~/.claude/skills/` (all projects) or `<project>/.claude/skills/` (one project) and restart Claude Code. Skills with scripts have their own setup steps:
 
 - `brand-motion-intro`: [how to install and use](skills/brand-motion-intro/README.md) · [como instalar e usar](skills/brand-motion-intro/README.pt.md)
+- `identity-design-system`: [how to install and use](skills/identity-design-system/README.md) · [como instalar e usar](skills/identity-design-system/README.pt.md)
+- `lotus-design-system`: [how to install and use](skills/lotus-design-system/README.md) · [como instalar e usar](skills/lotus-design-system/README.pt.md)
 
 The skills will also be packaged as a Claude Code plugin with the first release.
 

@@ -1,0 +1,13 @@
+{
+  "name": "my-design-system",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Replace with your system's name and tagline.",
+  "dsPrefix": "ds",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node scripts/build.mjs && node --test test/*.test.mjs"
+  },
+  "engines": { "node": ">=20" }
+}
