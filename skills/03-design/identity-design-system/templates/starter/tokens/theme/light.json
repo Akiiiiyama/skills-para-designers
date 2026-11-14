@@ -1,0 +1,24 @@
+{
+  "$description": "Theme layer, light. Aliases only, and exactly the same names as dark.json.",
+  "color": {
+    "$type": "color",
+    "bg": { "$value": "{color.neutral.50}" },
+    "surface": { "$value": "{color.neutral.0}" },
+    "border": { "$value": "{color.neutral.200}" },
+    "text": {
+      "primary": { "$value": "{color.neutral.950}" },
+      "secondary": { "$value": "{color.neutral.600}" },
+      "inverse": { "$value": "{color.neutral.0}" },
+      "accent": { "$value": "{color.accent.600}" }
+    },
+    "action": {
+      "primary": { "$value": "{color.neutral.950}" },
+      "primary-hover": { "$value": "{color.neutral.800}" },
+      "accent": { "$value": "{color.accent.600}" },
+      "accent-hover": { "$value": "{color.accent.700}" },
+      "on-accent": { "$value": "{color.neutral.0}" }
+    },
+    "icon": { "muted": { "$value": "{color.neutral.600}" } },
+    "focus": { "$value": "{color.accent.600}" }
+  }
+}

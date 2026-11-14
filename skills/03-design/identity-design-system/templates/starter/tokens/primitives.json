@@ -1,0 +1,62 @@
+{
+  "$description": "Raw values (first layer). Components never use these directly; they go through a theme token. Replace every value with the approved direction.",
+  "color": {
+    "$type": "color",
+    "neutral": {
+      "0": { "$value": "#FFFFFF" },
+      "50": { "$value": "#F7F7F5" },
+      "100": { "$value": "#EFEFEC" },
+      "200": { "$value": "#E2E2DE" },
+      "400": { "$value": "#A3A39E" },
+      "600": { "$value": "#65655F" },
+      "700": { "$value": "#45453F" },
+      "800": { "$value": "#2B2B27" },
+      "850": { "$value": "#222220" },
+      "900": { "$value": "#1A1A18" },
+      "950": { "$value": "#121211" }
+    },
+    "accent": {
+      "300": { "$value": "#7FA8F5", "$description": "Accent for text on dark backgrounds." },
+      "600": { "$value": "#1F5FD6", "$description": "Brand accent. Fills, marks, accent on light backgrounds." },
+      "700": { "$value": "#184CB0" }
+    }
+  },
+  "space": {
+    "$type": "dimension",
+    "$description": "4 px base. The name counts units of 4: space/4 = 16 px.",
+    "0": { "$value": "0px" },
+    "1": { "$value": "4px" },
+    "2": { "$value": "8px" },
+    "3": { "$value": "12px" },
+    "4": { "$value": "16px" },
+    "6": { "$value": "24px" },
+    "8": { "$value": "32px" },
+    "12": { "$value": "48px" },
+    "16": { "$value": "64px" }
+  },
+  "radius": {
+    "$type": "dimension",
+    "sm": { "$value": "4px" },
+    "md": { "$value": "8px" },
+    "lg": { "$value": "16px" },
+    "pill": { "$value": "999px" }
+  },
+  "duration": {
+    "$type": "duration",
+    "fast": { "$value": "150ms" },
+    "base": { "$value": "250ms" },
+    "slow": { "$value": "450ms" }
+  },
+  "ease": {
+    "$type": "cubicBezier",
+    "out": { "$value": [0.16, 1, 0.3, 1] },
+    "in-out": { "$value": [0.65, 0, 0.35, 1] }
+  },
+  "font": {
+    "family": {
+      "$type": "fontFamily",
+      "sans": { "$value": ["Inter", "system-ui", "sans-serif"] },
+      "mono": { "$value": ["JetBrains Mono", "ui-monospace", "monospace"] }
+    }
+  }
+}

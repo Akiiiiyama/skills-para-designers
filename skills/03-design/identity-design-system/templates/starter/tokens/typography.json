@@ -1,0 +1,12 @@
+{
+  "$description": "Type scale. One entry per style; the build turns each into a CSS class.",
+  "type": {
+    "$type": "typography",
+    "display": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "72px", "fontWeight": 300, "lineHeight": 1, "letterSpacing": "-0.04em" } },
+    "h1": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "48px", "fontWeight": 700, "lineHeight": 1.05, "letterSpacing": "-0.03em" } },
+    "h2": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "32px", "fontWeight": 700, "lineHeight": 1.1, "letterSpacing": "-0.02em" } },
+    "body": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "17px", "fontWeight": 400, "lineHeight": 1.55, "letterSpacing": "0" } },
+    "caption": { "$value": { "fontFamily": "{font.family.sans}", "fontSize": "13px", "fontWeight": 400, "lineHeight": 1.4, "letterSpacing": "0" } },
+    "label": { "$value": { "fontFamily": "{font.family.mono}", "fontSize": "12px", "fontWeight": 500, "lineHeight": 1.3, "letterSpacing": "0.08em" } }
+  }
+}
