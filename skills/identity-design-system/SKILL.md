@@ -5,11 +5,11 @@ description: Guides a person to create their own design system starting from the
 
 # Identity-first design system / Design system a partir da identidade
 
-This skill is bilingual. Both files have the same content; follow the one in the language the person is using, and answer in that language.
+This skill is bilingual. The `pt/` and `en/` folders have the same content; follow the one in the language the person is using, and answer in that language.
 
-Esta skill é bilíngue. Os dois arquivos têm o mesmo conteúdo; siga o do idioma em que a pessoa está falando e responda nesse idioma.
+Esta skill é bilíngue. As pastas `pt/` e `en/` têm o mesmo conteúdo; siga o do idioma em que a pessoa está falando e responda nesse idioma.
 
-- Português: [`pt.md`](pt.md) · entrevista: [`references/identity-interview/pt.md`](references/identity-interview/pt.md) · página de proposta: [`references/proposal-page/pt.md`](references/proposal-page/pt.md)
-- English: [`en.md`](en.md) · interview: [`references/identity-interview/en.md`](references/identity-interview/en.md) · proposal page: [`references/proposal-page/en.md`](references/proposal-page/en.md)
+- Português: [`pt/skill.md`](pt/skill.md) · entrevista: [`pt/referencias/entrevista.md`](pt/referencias/entrevista.md) · página de proposta: [`pt/referencias/pagina-de-proposta.md`](pt/referencias/pagina-de-proposta.md)
+- English: [`en/skill.md`](en/skill.md) · interview: [`en/references/interview.md`](en/references/interview.md) · proposal page: [`en/references/proposal-page.md`](en/references/proposal-page.md)
 
 Starter kit (both languages in its README): [`templates/starter`](templates/starter)

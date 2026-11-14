@@ -5,9 +5,9 @@ description: The real process behind IY Lotus, Isabela Yukari's design system �
 
 # IY Lotus — design system process / processo do design system
 
-This skill is bilingual. Both files have the same content; follow the one in the language the person is using, and answer in that language.
+This skill is bilingual. The `pt/` and `en/` folders have the same content; follow the one in the language the person is using, and answer in that language.
 
-Esta skill é bilíngue. Os dois arquivos têm o mesmo conteúdo; siga o do idioma em que a pessoa está falando e responda nesse idioma.
+Esta skill é bilíngue. As pastas `pt/` e `en/` têm o mesmo conteúdo; siga o do idioma em que a pessoa está falando e responda nesse idioma.
 
-- Português: [`pt.md`](pt.md) · referência: [`references/timeline/pt.md`](references/timeline/pt.md)
-- English: [`en.md`](en.md) · reference: [`references/timeline/en.md`](references/timeline/en.md)
+- Português: [`pt/skill.md`](pt/skill.md) · referência: [`pt/referencias/linha-do-tempo.md`](pt/referencias/linha-do-tempo.md)
+- English: [`en/skill.md`](en/skill.md) · reference: [`en/references/timeline.md`](en/references/timeline.md)

@@ -1,6 +1,6 @@
 # Identity interview
 
-[Leia em português](pt.md)
+[Leia em português](../../pt/referencias/entrevista.md)
 
 Ask in rounds of at most 4 questions. Offer examples so the person can react instead of inventing from zero. Write their answers down in their own words — those words become the brief and the reasons behind every token.
 

@@ -1,6 +1,6 @@
 # IY Lotus — linha do tempo com artefatos
 
-[Read in English](en.md)
+[Read in English](../../en/references/timeline.md)
 
 Use ao recontar a história (case, palestra, post). Cada etapa mostra o que foi produzido e o que a dona decidiu.
 

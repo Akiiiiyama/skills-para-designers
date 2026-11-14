@@ -1,6 +1,6 @@
 # IY Lotus — how the design system was built
 
-[Leia em português](pt.md)
+[Leia em português](../pt/skill.md)
 
 *Growth, beauty, discipline and wisdom.*
 
@@ -10,7 +10,7 @@ Repository: `github.com/Akiiiiyama/iylotus` (public, MIT). Site: `apps/site` in 
 
 Two modes:
 
-- **Retell** (case study, talk, LinkedIn post, interview answer): follow [The process](#the-process) and the lessons; [`references/timeline/en.md`](references/timeline/en.md) has the step-by-step with artifacts.
+- **Retell** (case study, talk, LinkedIn post, interview answer): follow [The process](#the-process) and the lessons; [`references/timeline.md`](references/timeline.md) has the step-by-step with artifacts.
 - **Extend** (new token, color, component, page): follow [Extending IY Lotus](#extending-iy-lotus). Never edit `dist/`.
 
 ## The process

@@ -1,6 +1,6 @@
 # Design system a partir da identidade
 
-[Read in English](en.md)
+[Read in English](../en/skill.md)
 
 Um design system com a cara de alguém começa por **quem essa pessoa é**, não por uma lista de componentes. Esta skill percorre o mesmo caminho do IY Lotus (veja a skill `lotus-design-system`), mas para qualquer pessoa ou marca: descobrir a identidade, torná-la visível, conseguir a aprovação e só então transformá-la em tokens testados e prontos para publicar.
 
@@ -16,7 +16,7 @@ Quem decide a identidade é a pessoa. O Claude pergunta, propõe opções, mostr
 
 ### 1. Entrevista de identidade (pergunte, não suponha)
 
-Pergunte em rodadas curtas, nunca mais de 4 perguntas por vez. Use [`references/identity-interview/pt.md`](references/identity-interview/pt.md). Cubra:
+Pergunte em rodadas curtas, nunca mais de 4 perguntas por vez. Use [`referencias/entrevista.md`](referencias/entrevista.md). Cubra:
 
 - **Propósito e público**: o que vai ser construído primeiro (site, app, apresentação)? Quem vai ver?
 - **Valores**: 3 ou 4 palavras que o trabalho deve transmitir (no IY Lotus: crescimento, beleza, disciplina, sabedoria).
@@ -37,7 +37,7 @@ Ofereça de 6 a 10 nomes ligados aos valores ou à pessoa (iniciais + um símbol
 
 ### 4. Página de proposta visual (portão de aprovação)
 
-Construa uma página HTML já na direção escolhida, não uma ficha técnica neutra. Siga [`references/proposal-page/pt.md`](references/proposal-page/pt.md): hero com o nome e o slogan, valores, paleta com contraste, escala tipográfica, espaçamento, raios, botões/inputs/cards em todos os estados, light e dark lado a lado. Ajuste conforme o retorno, **mudando só o que a pessoa apontou**. Tenha uma aprovação explícita ("aprovado") antes de qualquer código.
+Construa uma página HTML já na direção escolhida, não uma ficha técnica neutra. Siga [`referencias/pagina-de-proposta.md`](referencias/pagina-de-proposta.md): hero com o nome e o slogan, valores, paleta com contraste, escala tipográfica, espaçamento, raios, botões/inputs/cards em todos os estados, light e dark lado a lado. Ajuste conforme o retorno, **mudando só o que a pessoa apontou**. Tenha uma aprovação explícita ("aprovado") antes de qualquer código.
 
 ### 5. Escolher o caminho
 
@@ -48,7 +48,7 @@ Diga qual e por quê num parágrafo do README da pessoa.
 
 ### 6. Tokens a partir do starter
 
-Copie [`templates/starter`](templates/starter) para o projeto da pessoa e troque os valores de exemplo pela direção aprovada:
+Copie [`templates/starter`](../templates/starter) para o projeto da pessoa e troque os valores de exemplo pela direção aprovada:
 
 - `tokens/primitives.json` — paleta bruta, espaçamento (base de 4 px), raios, durações, easing, famílias tipográficas.
 - `tokens/typography.json` — a escala tipográfica.

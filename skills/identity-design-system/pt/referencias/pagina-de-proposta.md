@@ -1,6 +1,6 @@
 # Página de proposta visual
 
-[Read in English](en.md)
+[Read in English](../../en/references/proposal-page.md)
 
 Um único arquivo HTML, construído **já na direção escolhida** (as cores, a tipografia e o detalhe assinatura dela), para a pessoa julgar o visual e não uma tabela. Uma página só, com rolagem.
 

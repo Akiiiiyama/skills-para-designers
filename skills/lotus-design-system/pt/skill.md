@@ -1,6 +1,6 @@
 # IY Lotus — como o design system foi construído
 
-[Read in English](en.md)
+[Read in English](../en/skill.md)
 
 *Crescimento, beleza, disciplina e sabedoria.*
 
@@ -10,7 +10,7 @@ Repositório: `github.com/Akiiiiyama/iylotus` (público, MIT). Site: `apps/site`
 
 Dois modos:
 
-- **Recontar** (case, palestra, post no LinkedIn, resposta de entrevista): siga [O processo](#o-processo) e os aprendizados; [`references/timeline/pt.md`](references/timeline/pt.md) tem o passo a passo com os artefatos.
+- **Recontar** (case, palestra, post no LinkedIn, resposta de entrevista): siga [O processo](#o-processo) e os aprendizados; [`referencias/linha-do-tempo.md`](referencias/linha-do-tempo.md) tem o passo a passo com os artefatos.
 - **Evoluir** (token, cor, componente ou página nova): siga [Evoluindo o IY Lotus](#evoluindo-o-iy-lotus). Nunca edite `dist/`.
 
 ## O processo

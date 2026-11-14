@@ -1,6 +1,6 @@
 # Visual proposal page
 
-[Leia em português](pt.md)
+[Leia em português](../../pt/referencias/pagina-de-proposta.md)
 
 One self-contained HTML file, built **in the chosen direction** (its colors, type and signature detail), so the person judges the look, not a table. Keep it to one page that scrolls.
 

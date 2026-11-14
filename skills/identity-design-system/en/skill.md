@@ -1,6 +1,6 @@
 # Identity-first design system
 
-[Leia em português](pt.md)
+[Leia em português](../pt/skill.md)
 
 A design system that feels like someone starts with **who they are**, not with a component list. This skill runs the same path IY Lotus took (see the `lotus-design-system` skill) but for any person or brand: discover the identity, make it visible, get approval, and only then turn it into tokens that are tested and shippable.
 
@@ -16,7 +16,7 @@ The person decides the identity. Claude asks, proposes options, shows them, and 
 
 ### 1. Identity interview (ask, don't assume)
 
-Ask in short rounds — never more than 4 questions at a time. Use [`references/identity-interview/en.md`](references/identity-interview/en.md). Cover:
+Ask in short rounds — never more than 4 questions at a time. Use [`references/interview.md`](references/interview.md). Cover:
 
 - **Purpose and audience**: what will it build first (site, app, deck)? who sees it?
 - **Values**: 3–4 words they want their work to carry (IY Lotus: growth, beauty, discipline, wisdom).
@@ -37,7 +37,7 @@ Offer 6–10 names tied to the values or the person (initials + a symbol works w
 
 ### 4. Visual proposal page (approval gate)
 
-Build one HTML page in the chosen direction itself — not a neutral spec sheet. Follow [`references/proposal-page/en.md`](references/proposal-page/en.md): hero with the name and tagline, values, palette with contrast, type scale, spacing, radius, buttons/inputs/cards in all states, light and dark side by side. Iterate on their feedback, **changing only what they point at**. Get an explicit approval ("aprovado", "approved") before any code.
+Build one HTML page in the chosen direction itself — not a neutral spec sheet. Follow [`references/proposal-page.md`](references/proposal-page.md): hero with the name and tagline, values, palette with contrast, type scale, spacing, radius, buttons/inputs/cards in all states, light and dark side by side. Iterate on their feedback, **changing only what they point at**. Get an explicit approval ("aprovado", "approved") before any code.
 
 ### 5. Choose the path
 
@@ -48,7 +48,7 @@ Say which and why in one paragraph of their README.
 
 ### 6. Tokens from the starter
 
-Copy [`templates/starter`](templates/starter) into their project and replace the placeholder values with the approved direction:
+Copy [`templates/starter`](../templates/starter) into their project and replace the placeholder values with the approved direction:
 
 - `tokens/primitives.json` — raw palette, spacing (4 px base), radius, durations, easing, font families.
 - `tokens/typography.json` — the type scale.

@@ -1,6 +1,6 @@
 # IY Lotus — timeline with artifacts
 
-[Leia em português](pt.md)
+[Leia em português](../../pt/referencias/linha-do-tempo.md)
 
 Use this when retelling the story (case study, talk, post). Each step lists what was produced and what the owner decided.
 

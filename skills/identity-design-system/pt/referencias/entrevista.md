@@ -1,6 +1,6 @@
 # Entrevista de identidade
 
-[Read in English](en.md)
+[Read in English](../../en/references/interview.md)
 
 Pergunte em rodadas de no máximo 4 perguntas. Dê exemplos para a pessoa reagir em vez de inventar do zero. Anote as respostas com as palavras dela: essas palavras viram o brief e o motivo de cada token.
 

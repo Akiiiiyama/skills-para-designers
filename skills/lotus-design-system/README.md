@@ -1,15 +1,8 @@
-# IY Lotus — how the design system was built
+# IY Lotus — design system process
 
-The process behind [IY Lotus](https://github.com/Akiiiiyama/iylotus), step by step: from a brand reel to a name with meaning, a visual proposal, code-first DTCG tokens, CSS, React components with Storybook, contrast tests, a Figma plugin and a live site — with the decisions and lessons.
+| | |
+|---|---|
+| 🇧🇷 **Português** | Como o IY Lotus foi construído, passo a passo. [Como instalar e usar](pt/README.md) · [Conteúdo da skill](pt/skill.md) |
+| 🇺🇸 **English** | How IY Lotus was built, step by step. [Install and use](en/README.md) · [Skill content](en/skill.md) |
 
-[Leia em português](README.pt.md)
-
-Use it to retell the story (case study, talk, post) or to extend IY Lotus the same way it was built. To create **your own** system, use [`identity-design-system`](../identity-design-system/README.md).
-
-## Install
-
-```bash
-cp -R skills-para-designers/skills/lotus-design-system ~/.claude/skills/
-```
-
-Then ask Claude: *"how was IY Lotus built?"*, *"write a case study about IY Lotus"* or *"add a new color to IY Lotus"*.
+`SKILL.md` is the entry point Claude reads; it routes to `pt/` or `en/` by the language of the conversation.

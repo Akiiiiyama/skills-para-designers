@@ -28,15 +28,15 @@ skills/
 
 Start from [`templates/SKILL.template.md`](templates/SKILL.template.md).
 
-Bilingual skills follow the same pattern as [pilulas-ia](https://github.com/Akiiiiyama/pilulas-ia): `SKILL.md` is a short entry point and the full content lives in `pt.md` and `en.md` side by side (also inside `references/<topic>/`). Claude follows the file in the language the person is using.
+Bilingual skills follow the same pattern as [pilulas-ia](https://github.com/Akiiiiyama/pilulas-ia): `SKILL.md` is a short entry point and the full content lives in a `pt/` folder and an `en/` folder with the same structure (`README.md`, `skill.md`, references). Shared code, like starters, stays at the skill root. Claude follows the file in the language the person is using.
 
 ## Install
 
 Copy a skill folder into `~/.claude/skills/` (all projects) or `<project>/.claude/skills/` (one project) and restart Claude Code. Skills with scripts have their own setup steps:
 
 - `brand-motion-intro`: [how to install and use](skills/brand-motion-intro/README.md) · [como instalar e usar](skills/brand-motion-intro/README.pt.md)
-- `identity-design-system`: [how to install and use](skills/identity-design-system/README.md) · [como instalar e usar](skills/identity-design-system/README.pt.md)
-- `lotus-design-system`: [how to install and use](skills/lotus-design-system/README.md) · [como instalar e usar](skills/lotus-design-system/README.pt.md)
+- `identity-design-system`: [how to install and use](skills/identity-design-system/en/README.md) · [como instalar e usar](skills/identity-design-system/pt/README.md)
+- `lotus-design-system`: [how to install and use](skills/lotus-design-system/en/README.md) · [como instalar e usar](skills/lotus-design-system/pt/README.md)
 
 The skills will also be packaged as a Claude Code plugin with the first release.
 
