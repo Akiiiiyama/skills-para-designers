@@ -1,5 +1,7 @@
 # Visual proposal page
 
+[Leia em português](pt.md)
+
 One self-contained HTML file, built **in the chosen direction** (its colors, type and signature detail), so the person judges the look, not a table. Keep it to one page that scrolls.
 
 ## Sections, in order

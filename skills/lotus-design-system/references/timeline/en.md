@@ -1,5 +1,7 @@
 # IY Lotus — timeline with artifacts
 
+[Leia em português](pt.md)
+
 Use this when retelling the story (case study, talk, post). Each step lists what was produced and what the owner decided.
 
 | # | Step | Artifact | Decision |

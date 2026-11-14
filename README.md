@@ -28,6 +28,8 @@ skills/
 
 Start from [`templates/SKILL.template.md`](templates/SKILL.template.md).
 
+Bilingual skills follow the same pattern as [pilulas-ia](https://github.com/Akiiiiyama/pilulas-ia): `SKILL.md` is a short entry point and the full content lives in `pt.md` and `en.md` side by side (also inside `references/<topic>/`). Claude follows the file in the language the person is using.
+
 ## Install
 
 Copy a skill folder into `~/.claude/skills/` (all projects) or `<project>/.claude/skills/` (one project) and restart Claude Code. Skills with scripts have their own setup steps:
