@@ -6,7 +6,7 @@ Claude Code skills for designers, organized by the moments of the design process
 
 | Stage | What it is for | Skills |
 |---|---|---|
-| [**1 · Explore**](skills/01-explore) | Rapid prototyping. Make it real fast. | [`brand-motion-intro`](skills/01-explore/brand-motion-intro/README.md) |
+| [**1 · Explore**](skills/01-explore) | Rapid prototyping. Make it real fast. | [`explore`](skills/01-explore/explore/en/README.md), [`explore-intake`](skills/01-explore/explore-intake/en/README.md), [`brand-motion-intro`](skills/01-explore/brand-motion-intro/README.md) |
 | [**2 · Discover**](skills/02-discover) | Explore the codebase and history. Understand the current state. | [`lotus-design-system`](skills/02-discover/lotus-design-system/en/README.md) |
 | [**3 · Design**](skills/03-design) | Plan projects. Identify edge cases and scope. | [`identity-design-system`](skills/03-design/identity-design-system/en/README.md) |
 | [**4 · Prototype**](skills/04-prototype) | Implement code and test. Test new features in your product. | `portfolio-device-motion` *(planned)* |
@@ -50,7 +50,7 @@ Skills do Claude Code para designers, organizadas pelos momentos do processo de 
 
 | Etapa | Para quê | Skills |
 |---|---|---|
-| [**1 · Explorar**](skills/01-explore) | Prototipagem rápida. Tornar real rápido. | [`brand-motion-intro`](skills/01-explore/brand-motion-intro/README.pt.md) |
+| [**1 · Explorar**](skills/01-explore) | Prototipagem rápida. Tornar real rápido. | [`explore`](skills/01-explore/explore/pt/README.md), [`explore-intake`](skills/01-explore/explore-intake/pt/README.md), [`brand-motion-intro`](skills/01-explore/brand-motion-intro/README.pt.md) |
 | [**2 · Descobrir**](skills/02-discover) | Explorar o código e o histórico. Entender o estado atual. | [`lotus-design-system`](skills/02-discover/lotus-design-system/pt/README.md) |
 | [**3 · Projetar**](skills/03-design) | Planejar projetos. Identificar casos de borda e escopo. | [`identity-design-system`](skills/03-design/identity-design-system/pt/README.md) |
 | [**4 · Prototipar**](skills/04-prototype) | Implementar código e testar. Testar features novas no produto. | `portfolio-device-motion` *(planejada)* |
