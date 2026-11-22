@@ -4,12 +4,12 @@ O processo por trás do [IY Lotus](https://github.com/Akiiiiyama/iylotus), passo
 
 [Read in English](../en/README.md)
 
-Use para contar a história (case, palestra, post) ou para evoluir o IY Lotus do mesmo jeito que ele foi feito. Para criar o **seu próprio** sistema, use a [`identity-design-system`](../../../03-design/identity-design-system/pt/README.md).
+Use para contar a história (case, palestra, post) ou para evoluir o IY Lotus do mesmo jeito que ele foi feito. Para criar o **seu próprio** sistema, use a [`identity-design-system`](../../identity-design-system/pt/README.md).
 
 ## Instalar
 
 ```bash
-cp -R skills-para-designers/skills/02-discover/lotus-design-system ~/.claude/skills/
+cp -R skills-para-designers/skills/extras/lotus-design-system ~/.claude/skills/
 ```
 
 Depois pergunte ao Claude: *"como o IY Lotus foi construído?"*, *"escreva um case sobre o IY Lotus"* ou *"adicione uma cor nova ao IY Lotus"*.

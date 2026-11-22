@@ -8,7 +8,7 @@ Crie o seu próprio design system a partir da identidade que **você** quer: uma
 
 ```bash
 git clone https://github.com/Akiiiiyama/skills-para-designers.git
-cp -R skills-para-designers/skills/03-design/identity-design-system ~/.claude/skills/
+cp -R skills-para-designers/skills/extras/identity-design-system ~/.claude/skills/
 ```
 
 Reinicie o Claude Code.
@@ -26,4 +26,4 @@ Peça ao Claude: *"quero criar meu próprio design system"* ou *"me ajuda a tran
 
 A identidade é sempre sua: cada escolha cita algo que você disse.
 
-Exemplo real: [IY Lotus](https://github.com/Akiiiiyama/iylotus) e a skill [`lotus-design-system`](../../../02-discover/lotus-design-system/pt/skill.md).
+Exemplo real: [IY Lotus](https://github.com/Akiiiiyama/iylotus) e a skill [`lotus-design-system`](../../lotus-design-system/pt/skill.md).
