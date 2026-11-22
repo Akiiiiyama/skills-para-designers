@@ -23,10 +23,10 @@ mkdir -p ~/.claude/skills
 ```
 
 ```bash
-cp -R skills/01-explore/brand-motion-intro ~/.claude/skills/
+cp -R skills/extras/brand-motion-intro ~/.claude/skills/
 ```
 
-To use it in a single project only, copy it to `<project>/.claude/skills/` instead. To keep it in sync with this repo, use a symlink: `ln -s "$PWD/skills/01-explore/brand-motion-intro" ~/.claude/skills/brand-motion-intro`.
+To use it in a single project only, copy it to `<project>/.claude/skills/` instead. To keep it in sync with this repo, use a symlink: `ln -s "$PWD/skills/extras/brand-motion-intro" ~/.claude/skills/brand-motion-intro`.
 
 **b. Install the render scripts' dependencies** (puppeteer-core + ffmpeg-static):
 

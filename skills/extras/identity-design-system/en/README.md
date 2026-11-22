@@ -8,7 +8,7 @@ Create your own design system starting from the identity **you** want: an interv
 
 ```bash
 git clone https://github.com/Akiiiiyama/skills-para-designers.git
-cp -R skills-para-designers/skills/03-design/identity-design-system ~/.claude/skills/
+cp -R skills-para-designers/skills/extras/identity-design-system ~/.claude/skills/
 ```
 
 Restart Claude Code.
@@ -26,4 +26,4 @@ Ask Claude: *"I want to create my own design system"* or *"help me turn my visua
 
 The identity is always yours: every choice cites something you said.
 
-Real example: [IY Lotus](https://github.com/Akiiiiyama/iylotus) and the [`lotus-design-system`](../../../02-discover/lotus-design-system/en/skill.md) skill.
+Real example: [IY Lotus](https://github.com/Akiiiiyama/iylotus) and the [`lotus-design-system`](../../lotus-design-system/en/skill.md) skill.

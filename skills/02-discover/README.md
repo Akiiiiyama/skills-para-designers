@@ -2,12 +2,8 @@
 
 🇧🇷 **Explorar o código e o histórico. Entender o estado atual antes de mudar qualquer coisa.**
 
-| Skill | O que faz | Status |
-|---|---|---|
-| [`lotus-design-system`](lotus-design-system/pt/README.md) | O processo real do IY Lotus: como foi construído, as decisões e como evoluí-lo. | Rascunho |
+As skills desta etapa estão em construção e entram aqui depois de testadas.
 
 🇺🇸 **Explore the codebase and its history. Understand the current state before changing anything.**
 
-| Skill | What it does | Status |
-|---|---|---|
-| [`lotus-design-system`](lotus-design-system/en/README.md) | The real process behind IY Lotus: how it was built, its decisions and how to extend it. | Draft |
+The skills for this stage are being built and will land here once tested.
